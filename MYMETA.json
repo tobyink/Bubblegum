@@ -1,0 +1,59 @@
+{
+   "abstract" : "Opinionated Modern Perl Development Framework",
+   "author" : [
+      "Al Newkirk <anewkirk@ana.io>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "ExtUtils::MakeMaker version 6.72, CPAN::Meta::Converter version 2.132830",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Bubblegum",
+   "no_index" : {
+      "directory" : [
+         "t",
+         "inc"
+      ]
+   },
+   "prereqs" : {
+      "build" : {
+         "requires" : {}
+      },
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "6.30"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Class::Forward" : "0.100006",
+            "Class::Load" : "0",
+            "DateTime::Tiny" : "1.04",
+            "Exception::Tiny" : "0",
+            "Exporter::Tiny" : "0.030",
+            "File::Find::Rule" : "0",
+            "File::HomeDir" : "1.00",
+            "File::Which" : "1.09",
+            "Import::Into" : "1.001001",
+            "JSON::Tiny" : "0.38",
+            "Module::Find" : "0.11",
+            "Moo" : "1.003001",
+            "Path::Tiny" : "0.047",
+            "Time::Format" : "1.12",
+            "Time::ParseDate" : "2013.1113",
+            "Try::Tiny" : "0.18",
+            "Type::Tiny" : "0.032",
+            "YAML::Tiny" : "1.56",
+            "autobox" : "0",
+            "autodie" : "0",
+            "utf8::all" : "0"
+         }
+      }
+   },
+   "release_status" : "stable",
+   "version" : "0.01"
+}
