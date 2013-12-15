@@ -3,60 +3,12 @@ Changes from 2012-12-15 00:00:00 +0000 to present.
 ==================================================
 
 -----------------------------------------
-version 0.01 at 2013-12-15 16:09:47 +0000
+version 0.01 at 2013-12-15 16:11:13 +0000
 -----------------------------------------
 
-  Change: a1dd1e692859eb9618cedd8ba3b03f717c5fb6a6
+  Change: a57b22211d0103d90b21399c390d8443b32992c3
   Author: Al Newkirk <anewkirk@ana.io>
-  Date : 2013-12-15 11:09:43 +0000
-
-    Miscellaneous bug fixes. Added miscellaneous tests. (Sun Dec 15 11:09:43
-    EST 2013) 
-
-  Change: a8b0197ca7c78f224e21be048331bdb554ed5daf
-  Author: Al Newkirk <anewkirk@ana.io>
-  Date : 2013-12-15 10:09:16 +0000
-
-    Miscellaneous bug fixes. Added miscellaneous tests. (Sun Dec 15 10:09:16
-    EST 2013) 
-
-  Change: d35cb702e23dd76da36cfdde370dcc1973158287
-  Author: Al Newkirk <anewkirk@ana.io>
-  Date : 2013-12-15 09:48:53 +0000
-
-    Miscellaneous bug fixes. Added miscellaneous tests. (Sun Dec 15 09:48:53
-    EST 2013) 
-
-  Change: 7d192378ab68c266e1e113f4eb35d3d2c504ace0
-  Author: Al Newkirk <anewkirk@ana.io>
-  Date : 2013-12-15 09:48:41 +0000
-
-    Miscellaneous bug fixes. Added miscellaneous tests. (Sun Dec 15 09:48:41
-    EST 2013) 
-
-  Change: 249a7ce5c017fa635a97b45f79b4921260f0512b
-  Author: Al Newkirk <anewkirk@ana.io>
-  Date : 2013-12-15 09:15:21 +0000
-
-    Miscellaneous bug fixes. Added miscellaneous tests. (Sun Dec 15 09:15:21
-    EST 2013) 
-
-  Change: d214eb13de0670a948e7ba4c880ade10f9beefda
-  Author: Al Newkirk <anewkirk@ana.io>
-  Date : 2013-12-15 04:20:58 +0000
-
-    Miscellaneous bug fixes. Added miscellaneous tests. (Sun Dec 15 04:20:58
-    EST 2013) 
-
-  Change: f23a6b6e0279f2620ab640a319922e2423ae5049
-  Author: Al Newkirk <anewkirk@ana.io>
-  Date : 2013-12-15 02:52:19 +0000
-
-    Miscellaneous bug fixes. Added miscellaneous tests. 
-
-  Change: 34746cfcc18fc2bae23cf0a58084e546dbb121cb
-  Author: Al Newkirk <anewkirk@ana.io>
-  Date : 2013-12-13 20:09:46 +0000
+  Date : 2013-12-15 11:10:50 +0000
 
     Initial commit. 
 
