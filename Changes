@@ -1,0 +1,55 @@
+==================================================
+Changes from 2012-12-16 00:00:00 +0000 to present.
+==================================================
+
+-----------------------------------------
+version 0.03 at 2013-12-15 18:58:35 +0000
+-----------------------------------------
+
+  Change: aa2a674396eeb784173badf3892c8b90b187027e
+  Author: Al Newkirk <anewkirk@ana.io>
+  Date : 2013-12-15 13:58:35 +0000
+
+    v0.03 
+
+  Change: e33b568979b2891ab093cf31a8d9b6ae0001d519
+  Author: Al Newkirk <anewkirk@ana.io>
+  Date : 2013-12-15 13:54:32 +0000
+
+    Fixed release, again. 
+
+-----------------------------------------
+version 0.02 at 2013-12-15 18:45:16 +0000
+-----------------------------------------
+
+  Change: fd1d71257bbc57dff51698213416dcf880b6f9a0
+  Author: Al Newkirk <anewkirk@ana.io>
+  Date : 2013-12-15 13:45:16 +0000
+
+    v0.02 
+
+  Change: 74609b9e11806406c8e9017153a3b8b6331b2bc7
+  Author: Al Newkirk <anewkirk@ana.io>
+  Date : 2013-12-15 13:44:42 +0000
+
+    Fixed botched release. 
+
+-----------------------------------------
+version 0.01 at 2013-12-15 16:11:37 +0000
+-----------------------------------------
+
+  Change: fd2bd2d9ff62ed1623b49de55ffa3f376dbe42c6
+  Author: Al Newkirk <anewkirk@ana.io>
+  Date : 2013-12-15 11:11:37 +0000
+
+    v0.01 
+
+  Change: a57b22211d0103d90b21399c390d8443b32992c3
+  Author: Al Newkirk <anewkirk@ana.io>
+  Date : 2013-12-15 11:10:50 +0000
+
+    Initial commit. 
+
+================
+End of releases.
+================
