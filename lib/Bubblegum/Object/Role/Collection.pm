@@ -17,4 +17,6 @@ requires 'get';
 requires 'set';
 requires 'values';
 
+# VERSION
+
 1;

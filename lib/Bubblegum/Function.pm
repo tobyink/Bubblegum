@@ -9,4 +9,6 @@ use base 'Exporter::Tiny';
 
 our @EXPORT_OK  = qw();
 
+# VERSION
+
 1;

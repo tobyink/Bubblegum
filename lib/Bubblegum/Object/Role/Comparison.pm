@@ -12,6 +12,8 @@ requires 'lt';
 requires 'lte';
 requires 'ne';
 
+# VERSION
+
 sub equal {
     goto &eq;
 }

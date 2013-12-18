@@ -1,9 +1,11 @@
 package Bubblegum::Wrapper::Dumper;
 
-use Bubblegum;
+use Bubblegum::Class;
 use Data::Dumper ();
 
 extends 'Bubblegum::Object::Instance';
+
+# VERSION
 
 sub decode {
     my $self = shift;

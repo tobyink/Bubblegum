@@ -1,9 +1,11 @@
 package Bubblegum::Wrapper::Yaml;
 
-use Bubblegum;
+use Bubblegum::Class;
 use YAML::Tiny ();
 
 extends 'Bubblegum::Object::Instance';
+
+# VERSION
 
 sub decode {
     my $self = shift;

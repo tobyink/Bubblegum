@@ -6,4 +6,6 @@ with 'Bubblegum::Object::Role::Collection';
 
 requires 'slice';
 
+# VERSION
+
 1;

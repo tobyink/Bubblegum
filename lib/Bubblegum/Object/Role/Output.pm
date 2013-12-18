@@ -11,4 +11,6 @@ requires 'sayf';
 requires 'sprintf';
 requires 'ssayf';
 
+# VERSION
+
 1;

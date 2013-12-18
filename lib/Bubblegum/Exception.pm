@@ -7,4 +7,6 @@ use warnings;
 
 use base 'Exception::Tiny';
 
+# VERSION
+
 1;
