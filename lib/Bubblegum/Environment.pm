@@ -169,12 +169,8 @@ sub AUTOLOAD {
             $method, ((ref $_[0] || $_[0]) || 'main');
 }
 
-{
-    no warnings 'once';
-    *DESTROY   = sub {};
-    *TIESCALAR = \&new;
-    *FETCH     = \&new;
-    *STORE     = \&new;
+sub DESTROY {
+    # noop
 }
 
 1;

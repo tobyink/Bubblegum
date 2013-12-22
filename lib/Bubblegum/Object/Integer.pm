@@ -72,7 +72,7 @@ sub eq {
     $int->eqtv(123); # 1; true
 
 The eqtv method returns true if the argument matches the subject's type and
-value, otherwise returns false. This                             function is akin to the strict-comparison
+value, otherwise returns false. This function is akin to the strict-comparison
 operator in other languages.
 
 =cut
