@@ -140,7 +140,7 @@ sub user {
 }
 
 sub user_info {
-    return [(getpwuid $>)];
+    return [eval '(getpwuid $>)'];
 }
 
 sub which {

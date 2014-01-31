@@ -344,7 +344,7 @@ the iterator will return an undefined value.
 
 sub iterator {
     my $self = CORE::shift;
-    my @keys = map { bbblgm::chkstr $_ } @_;
+    my @keys = CORE::keys %{$self};
 
     my $i = 0;
     return sub {
