@@ -16,6 +16,7 @@ use Types::Standard (
     assert_HashRef    => { -as => 'asa_hashref' },
     assert_Ref        => { -as => 'asa_ref' },
     assert_RegexpRef  => { -as => 'asa_regexp' },
+    assert_Num        => { -as => 'asa_number' },
     assert_Str        => { -as => 'asa_string' },
     is_ArrayRef       => { -as => 'isa_arrayref' },
     is_Object         => { -as => 'isa_classref' },
