@@ -185,7 +185,7 @@ sub mod {
 =method neg
 
     my $number = 12345;
-    $number->neg; # -12345;
+    $number->neg; # -12345
 
 The neg method returns a negative version of the subject.
 
@@ -199,7 +199,7 @@ sub neg {
 =method pow
 
     my $number = 12345;
-    $number->pow; # 152399025
+    $number->pow(3); # 1881365963625
 
 The pow method returns a number, the result of a math operation, which is the
 subject to the power of the argument.
