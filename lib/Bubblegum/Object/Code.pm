@@ -124,11 +124,11 @@ sub disjoin {
 
     my $code = sub { $_[0] % 2 };
     $code = $code->conjoin(sub { 1 });
-    $code->(0); # 1
+    $code->(0); # 0
     $code->(1); # 1
-    $code->(2); # 1
+    $code->(2); # 0
     $code->(3); # 1
-    $code->(4); # 1
+    $code->(4); # 0
 
 The conjoin method creates a code reference which execute the subject and the
 argument in a logical AND operation having the subject as the lvalue and the
