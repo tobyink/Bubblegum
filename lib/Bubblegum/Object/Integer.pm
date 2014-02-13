@@ -5,7 +5,6 @@ use Bubblegum::Class 'with';
 
 with 'Bubblegum::Object::Role::Defined';
 with 'Bubblegum::Object::Role::Comparison';
-with 'Bubblegum::Object::Role::Coercive';
 with 'Bubblegum::Object::Role::Value';
 
 # VERSION
@@ -218,80 +217,6 @@ sub to {
 
     return [$self..$range] if $self <= $range;
     return [CORE::reverse($range..$self)];
-}
-
-=method to_array
-
-    my $int = 1;
-    $int->to_array; # [1]
-
-The to_array method is used for coercion and simply returns an array reference
-where the first element contains the subject.
-
-=cut
-
-sub to_array {
-    my $self = CORE::shift;
-    return [$self];
-}
-
-=method to_code
-
-    my $int = 1;
-    $int->to_code; # sub { 1 }
-
-The to_code method is used for coercion and simply returns a code reference
-which always returns the subject when called.
-
-=cut
-
-sub to_code {
-    my $self = CORE::shift;
-    return sub {$self};
-}
-
-=method to_hash
-
-    my $int = 1;
-    $int->to_hash; # { 1 => 1 }
-
-The to_hash method is used for coercion and simply returns a hash reference
-with a single key and value, having the key and value both contain the subject.
-
-=cut
-
-sub to_hash {
-    my $self = CORE::shift;
-    return {$self=>$self};
-}
-
-=method to_integer
-
-    my $int = 1;
-    $int->to_integer; # 1
-
-The to_integer method is used for coercion and simply returns the subject.
-
-=cut
-
-sub to_integer {
-    my $self = CORE::shift;
-    return $self;
-}
-
-=method to_string
-
-    my $int = 1;
-    $int->to_string; # '1'
-
-The to_string method is used for coercion and simply returns the stringified
-version of the subject.
-
-=cut
-
-sub to_string {
-    my $self = CORE::shift;
-    return "$self";
 }
 
 =method upto
