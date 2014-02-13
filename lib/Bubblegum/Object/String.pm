@@ -2,6 +2,8 @@
 package Bubblegum::Object::String;
 
 use Bubblegum::Class 'with';
+use Bubblegum::Syntax -types;
+
 use Scalar::Util ();
 
 with 'Bubblegum::Object::Role::Defined';
@@ -42,7 +44,7 @@ returns false. Equality is case-sensative.
 
 sub eq {
     my $self  = CORE::shift;
-    my $other = bbblgm::chkstr CORE::shift;
+    my $other = type_str CORE::shift;
 
     return $self eq $other ? 1 : 0;
 }
@@ -80,7 +82,7 @@ function.
 
 sub format {
     my $self   = CORE::shift;
-    my $format = bbblgm::chkstr CORE::shift;
+    my $format = type_str CORE::shift;
 
     return CORE::sprintf $format, $self;
 }
@@ -99,7 +101,7 @@ to be a string.
 
 sub gt {
     my $self  = CORE::shift;
-    my $other = bbblgm::chkstr CORE::shift;
+    my $other = type_str CORE::shift;
 
     return $self gt $other ? 1 : 0;
 }
@@ -119,7 +121,7 @@ operation expects the argument to be a string.
 
 sub gte {
     my $self  = CORE::shift;
-    my $other = bbblgm::chkstr CORE::shift;
+    my $other = type_str CORE::shift;
 
     return $self ge $other ? 1 : 0;
 }
@@ -138,7 +140,7 @@ be a string.
 
 sub lt {
     my $self  = CORE::shift;
-    my $other = bbblgm::chkstr CORE::shift;
+    my $other = type_str CORE::shift;
 
     return $self lt $other ? 1 : 0;
 }
@@ -158,7 +160,7 @@ operation expects the argument to be a string.
 
 sub lte {
     my $self  = CORE::shift;
-    my $other = bbblgm::chkstr CORE::shift;
+    my $other = type_str CORE::shift;
 
     return $self le $other ? 1 : 0;
 }
@@ -176,7 +178,7 @@ returns false. Equality is case-sensative.
 
 sub ne {
     my $self  = CORE::shift;
-    my $other = bbblgm::chkstr CORE::shift;
+    my $other = type_str CORE::shift;
 
     return $self ne $other ? 1 : 0;
 }
@@ -270,10 +272,10 @@ beginning of the string.
 
 sub index {
     my ($self, $substr, $pos) = @_;
-    bbblgm::chkstr $substr;
+    type_str $substr;
     return CORE::index $self, $substr if scalar @_ == 2;
 
-    bbblgm::chknum $pos;
+    type_num $pos;
     return CORE::index $self, $substr, $pos
 }
 
@@ -385,10 +387,10 @@ searching from the end of the string.
 
 sub rindex {
     my ($self, $substr, $pos) = @_;
-    bbblgm::chkstr $substr;
+    type_str $substr;
     return CORE::rindex $self, $substr if !defined $pos;
 
-    bbblgm::chknum $pos;
+    type_num $pos;
     return CORE::rindex $self, $substr, $pos;
 }
 
@@ -430,10 +432,10 @@ argument to be a Regexp object.
 
 sub split {
     my ($self, $regexp, $limit) = @_;
-    bbblgm::chkre $regexp;
+    type_rref $regexp;
     return [CORE::split /$regexp/, $self] if !defined $limit;
 
-    bbblgm::chknum $limit;
+    type_num $limit;
     return [CORE::split /$regexp/, $self, $limit];
 }
 

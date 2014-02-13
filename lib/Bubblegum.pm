@@ -16,6 +16,48 @@ sub import {
 
 =head1 SYNOPSIS
 
+    package Person;
+
+    use Bubblegum::Class;
+    use Bubblegum::Syntax -attr, -types, -typesof;
+
+    has typeof_num, 'id';
+    has typeof_str, 'firstname';
+    has typeof_str, 'lastname';
+
+    has business => (
+        is   => 'ro',
+        isa  => typeof_object,
+        lazy => 1
+    );
+
+    sub say_hello {
+        my $self    = shift;
+        my $subject = type_str shift;
+
+        return sprintf 'Hello %s. My name is %s, nice to meet you.',
+            $subject->titlecase, $self->firstname->titlecase;
+    }
+
+And elsewhere:
+
+    my $jeff = Person->new(firstname => 'jeffrey');
+    say $jeff->say_hello('amanda');
+
+=head1 DESCRIPTION
+
+Bubblegum is a modern Perl development framework, it enforces common best
+practices and is intended to be used to enhance your Perl environment and
+development experience. The design goal of Bubblegum is to be as minimal as
+possible, enabling as many core features as is justifiable, making the common
+most repetitive programming tasks simply a method call away, and having all this
+available by simply requiring this library. This framework is very opinionated
+and designed around convention over configuration. Designed for adoption, all of
+the techniques used in this framework are well-known by experienced Perl
+developers and made conveniently available to programmers at all levels, i.e.,
+no experimental features used. B<Note: This is an early release available for
+testing and feedback and as such is subject to change.>
+
     use Bubblegum;
 
 is equivalent to
@@ -86,20 +128,6 @@ using Bubblegum:
         use Bubblegum::Class;                   # with Moo
         use Bubblegum::Role;                    # with Moo::Role
         use Bubblegum::Singleton;               # with Moo + Cached Instance
-
-=head1 DESCRIPTION
-
-Bubblegum is a modern Perl development framework, it enforces common best
-practices and is intended to be used to enhance your Perl environment and
-development experience. The design goal of Bubblegum is to be as minimal as
-possible, enabling as many core features as is justifiable, making the common
-most repetitive programming tasks simply a method call away, and having all this
-available by simply requiring this library. This framework is very opinionated
-and designed around convention over configuration. Designed for adoption, all of
-the techniques used in this framework are well-known by experienced Perl
-developers and made conveniently available to programmers at all levels, i.e.,
-no experimental features used. B<Note: This is an early release available for
-testing and feedback and as such is subject to change.>
 
 =head1 INTRODUCTION
 

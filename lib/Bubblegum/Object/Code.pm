@@ -2,6 +2,7 @@
 package Bubblegum::Object::Code;
 
 use Bubblegum::Class 'with';
+use Bubblegum::Syntax -types;
 
 with 'Bubblegum::Object::Role::Defined';
 with 'Bubblegum::Object::Role::Ref';
@@ -93,7 +94,7 @@ passing it the remaining arguments when executed.
 
 sub compose {
     my $self = CORE::shift;
-    my $next = bbblgm::chkcode CORE::shift;
+    my $next = type_cref CORE::shift;
     my @args = @_;
     return (sub { $next->($self->(@_)) })->curry(@args);
 }
@@ -116,7 +117,7 @@ argument as the rvalue.
 
 sub disjoin {
     my $self = CORE::shift;
-    my $next = bbblgm::chkcode CORE::shift;
+    my $next = type_cref CORE::shift;
     return sub { $self->(@_) || $next->(@_) };
 }
 
@@ -138,7 +139,7 @@ argument as the rvalue.
 
 sub conjoin {
     my $self = CORE::shift;
-    my $next = bbblgm::chkcode CORE::shift;
+    my $next = type_cref CORE::shift;
     return sub { $self->(@_) && $next->(@_) };
 }
 

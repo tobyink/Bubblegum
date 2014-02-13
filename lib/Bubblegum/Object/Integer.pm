@@ -2,6 +2,7 @@
 package Bubblegum::Object::Integer;
 
 use Bubblegum::Class 'with';
+use Bubblegum::Syntax -types;
 
 with 'Bubblegum::Object::Role::Defined';
 with 'Bubblegum::Object::Role::Comparison';
@@ -40,7 +41,7 @@ argument.
 
 sub downto {
     my $self = CORE::shift;
-    my $other = bbblgm::chknum CORE::shift;
+    my $other = type_num CORE::shift;
 
     return [CORE::reverse $other..$self];
 }
@@ -59,7 +60,7 @@ returns false.
 
 sub eq {
     my $self  = CORE::shift;
-    my $other = bbblgm::chknum CORE::shift;
+    my $other = type_num CORE::shift;
 
     return $self == $other ? 1 : 0;
 }
@@ -97,7 +98,7 @@ function.
 
 sub format {
     my $self   = CORE::shift;
-    my $format = bbblgm::chkstr CORE::shift;
+    my $format = type_str CORE::shift;
 
     return CORE::sprintf $format, $self;
 }
@@ -116,7 +117,7 @@ to be numeric.
 
 sub gt {
     my $self  = CORE::shift;
-    my $other = bbblgm::chknum CORE::shift;
+    my $other = type_num CORE::shift;
 
     return $self > $other ? 1 : 0;
 }
@@ -136,7 +137,7 @@ operation expects the argument to be numeric.
 
 sub gte {
     my $self  = CORE::shift;
-    my $other = bbblgm::chknum CORE::shift;
+    my $other = type_num CORE::shift;
 
     return $self >= $other ? 1 : 0;
 }
@@ -155,7 +156,7 @@ be numeric.
 
 sub lt {
     my $self  = CORE::shift;
-    my $other = bbblgm::chknum CORE::shift;
+    my $other = type_num CORE::shift;
 
     return $self < $other ? 1 : 0;
 }
@@ -175,7 +176,7 @@ operation expects the argument to be numeric.
 
 sub lte {
     my $self  = CORE::shift;
-    my $other = bbblgm::chknum CORE::shift;
+    my $other = type_num CORE::shift;
 
     return $self <= $other ? 1 : 0;
 }
@@ -193,7 +194,7 @@ returns false.
 
 sub ne {
     my $self  = CORE::shift;
-    my $other = bbblgm::chknum CORE::shift;
+    my $other = type_num CORE::shift;
 
     return $self != $other ? 1 : 0;
 }
@@ -213,7 +214,7 @@ the argument, the range generated will be from least to greatest.
 
 sub to {
     my $self  = CORE::shift;
-    my $range = bbblgm::chknum CORE::shift;
+    my $range = type_num CORE::shift;
 
     return [$self..$range] if $self <= $range;
     return [CORE::reverse($range..$self)];
@@ -232,7 +233,7 @@ argument.
 
 sub upto {
     my $self = CORE::shift;
-    my $other = bbblgm::chknum CORE::shift;
+    my $other = type_num CORE::shift;
 
     return [$self..$other];
 }

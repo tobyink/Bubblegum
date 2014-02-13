@@ -2,6 +2,7 @@
 package Bubblegum::Object::Array;
 
 use Bubblegum::Class 'with';
+use Bubblegum::Syntax -types;
 
 with 'Bubblegum::Object::Role::Indexed';
 with 'Bubblegum::Object::Role::List';
@@ -91,7 +92,7 @@ returns false.
 
 sub defined {
     my $self  = CORE::shift;
-    my $index = bbblgm::chknum CORE::shift;
+    my $index = type_num CORE::shift;
 
     return CORE::defined $self->[$index];
 }
@@ -108,7 +109,7 @@ index specified by the argument after removing it from the array.
 
 sub delete {
     my $self  = CORE::shift;
-    my $index = bbblgm::chknum CORE::shift;
+    my $index = type_num CORE::shift;
 
     return CORE::delete $self->[$index];
 }
@@ -130,7 +131,7 @@ the current position in the loop.
 
 sub each {
     my $self = CORE::shift;
-    my $code = bbblgm::chkcode CORE::shift;
+    my $code = type_cref CORE::shift;
 
     my $i=0;
     foreach my $value (@$self) {
@@ -156,7 +157,7 @@ current position in the loop.
 
 sub each_key {
     my $self = CORE::shift;
-    my $code = bbblgm::chkcode CORE::shift;
+    my $code = type_cref CORE::shift;
 
     $code->($_) for (0..$#{$self});
     return $self;
@@ -181,8 +182,8 @@ values until all values have been seen.
 
 sub each_n_values {
     my $self   = CORE::shift;
-    my $number = $_[0] ? bbblgm::chknum  CORE::shift : 2;
-    my $code   = bbblgm::chkcode CORE::shift;
+    my $number = $_[0] ? type_num  CORE::shift : 2;
+    my $code   = type_cref CORE::shift;
     my @values = @$self;
 
     $code->(CORE::splice @values, 0, $number) while @values;
@@ -205,7 +206,7 @@ current position in the loop.
 
 sub each_value {
     my $self = CORE::shift;
-    my $code = bbblgm::chkcode CORE::shift;
+    my $code = type_cref CORE::shift;
 
     $code->($self->[$_]) for (0..$#{$self});
     return $self;
@@ -241,7 +242,7 @@ specified by the argument exists, otherwise it returns false.
 
 sub exists {
     my $self  = CORE::shift;
-    my $index = bbblgm::chknum CORE::shift;
+    my $index = type_num CORE::shift;
     return CORE::exists $self->[$index];
 }
 
@@ -271,7 +272,7 @@ specified by the argument.
 
 sub get {
     my $self  = CORE::shift;
-    my $index = bbblgm::chknum CORE::shift;
+    my $index = type_num CORE::shift;
     return $self->[$index];
 }
 
@@ -293,7 +294,7 @@ the elements for which the argument evaluated true.
 
 sub grep {
     my $self = CORE::shift;
-    my $code = bbblgm::chkcode CORE::shift;
+    my $code = type_cref CORE::shift;
     return [CORE::grep { $code->($_) } @$self];
 }
 
@@ -350,7 +351,7 @@ omitted, an empty string will be used as the join-string.
 
 sub join {
     my $self = CORE::shift;
-    my $separator = bbblgm::chkstr CORE::shift if $_[0];
+    my $separator = type_str CORE::shift if $_[0];
     return CORE::join $separator // '', @$self;
 }
 
@@ -368,7 +369,7 @@ sub keyed {
     my $self = CORE::shift;
     my @keys = @_;
 
-    bbblgm::chkstr $_ for @keys;
+    type_str $_ for @keys;
 
     my $i=0;
     return { CORE::map { $_ => $self->[$i++] } @keys };
@@ -449,7 +450,7 @@ the elements for which the argument returns a value or non-empty list.
 
 sub map {
     my $self = CORE::shift;
-    my $code = bbblgm::chkcode CORE::shift;
+    my $code = type_cref CORE::shift;
     return [CORE::map { $code->($_) } @$self];
 }
 
@@ -720,7 +721,7 @@ specified by the argument after updating it to the value of the second argument.
 
 sub set {
     my $self  = CORE::shift;
-    my $index = bbblgm::chknum CORE::shift;
+    my $index = type_num CORE::shift;
     return $self->[$index] = CORE::shift;
 }
 
@@ -766,7 +767,7 @@ sub slice {
     my $self = CORE::shift;
     my @indicies = @_;
 
-    bbblgm::chknum $_ for @indicies;
+    type_num $_ for @indicies;
 
     return [@$self[@indicies]];
 }
@@ -783,7 +784,7 @@ sorted alphanumerically.
 
 sub sort {
     my $self = CORE::shift;
-    my $code = bbblgm::chkcode CORE::shift if $_[0];
+    my $code = type_cref CORE::shift if $_[0];
     $code ||= sub { $a cmp $b };
     return [CORE::sort { $code->($a, $b) } @$self];
 }
