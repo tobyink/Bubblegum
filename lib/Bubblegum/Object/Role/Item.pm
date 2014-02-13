@@ -19,14 +19,14 @@ sub of {
     my $map  = bbblgm::mappings();
 
     my $alias = {
-        arrayref => 'array',
-        coderef  => 'code',
-        hashref  => 'hash',
-        int      => 'integer',
-        nil      => 'undef',
-        null     => 'undef',
-        num      => 'number',
-        str      => 'string',
+        aref => 'array',
+        cref => 'code',
+        href => 'hash',
+        int  => 'integer',
+        nil  => 'undef',
+        null => 'undef',
+        num  => 'number',
+        str  => 'string',
     };
 
     if ($alias->{$type}) {
