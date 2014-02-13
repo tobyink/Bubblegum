@@ -50,7 +50,7 @@ sub downto {
 
     my $int = 98765;
     $int->eq(98765); # true
-    $int->eq(098765); # true
+    $int->eq('98765'); # true
     $int->eq(987650); # false
 
 The eq method returns true if the argument matches the subject, otherwise
