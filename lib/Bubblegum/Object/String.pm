@@ -321,7 +321,7 @@ sub length {
 =method lines
 
     my $string = "who am i?\nwhere am i?\nhow did I get here";
-    $string->lines; # ['who am i','where am i','how did i get here']
+    $string->lines; # ['who am i?','where am i?','how did i get here']
 
 The lines method breaks the subject into pieces, split on 1 or more newline characters, and returns an array reference consisting of the pieces.
 
@@ -364,12 +364,12 @@ sub reverse {
 
     my $string = 'explain the unexplainable';
     $string->rindex('explain'); # 14
-    $string->rindex('explain', 0); # 14
-    $string->rindex('explain', 1); # 14
-    $string->rindex('explain', 2); # 14
-    $string->rindex('explain', 2); # 14
+    $string->rindex('explain', 0); # 0
+    $string->rindex('explain', 21); # 14
+    $string->rindex('explain', 22); # 14
+    $string->rindex('explain', 23); # 14
     $string->rindex('explain', 20); # 14
-    $string->rindex('explain', 14); # 14
+    $string->rindex('explain', 14); # 0
     $string->rindex('explain', 13); # 0
     $string->rindex('explain', 0); # 0
     $string->rindex('explained'); # -1
@@ -385,7 +385,7 @@ searching from the end of the string.
 sub rindex {
     my ($self, $substr, $pos) = @_;
     bbblgm::chkstr $substr;
-    return CORE::rindex $self, $substr if scalar @_ == 2;
+    return CORE::rindex $self, $substr if !defined $pos;
 
     bbblgm::chknum $pos;
     return CORE::rindex $self, $substr, $pos;
@@ -416,8 +416,8 @@ sub snakecase {
 =method split
 
     my $string = 'name, age, dob, email';
-    $self->split(qr/\,\s*/); # ['name', 'age', 'dob', 'email']
-    $self->split(qr/\,\s*/, 2); # ['name', 'age']
+    $string->split(qr/\,\s*/); # ['name', 'age', 'dob', 'email']
+    $string->split(qr/\,\s*/, 2); # ['name', 'age, dob, email']
 
 The split method splits the subject into a list of strings, separating each
 chunk by the argument (regexp object), and returns that list as an array
@@ -430,15 +430,15 @@ argument to be a Regexp object.
 sub split {
     my ($self, $regexp, $limit) = @_;
     bbblgm::chkre $regexp;
-    return [CORE::split $regexp, $self] if scalar @_ == 2;
+    return [CORE::split /$regexp/, $self] if !defined $limit;
 
     bbblgm::chknum $limit;
-    return [CORE::split $regexp, $self, $limit];
+    return [CORE::split /$regexp/, $self, $limit];
 }
 
 =method strip
 
-    my $string = 'one  , two  , three';
+    my $string = 'one,  two,  three';
     $string->strip; # one, two, three
 
 The strip method returns the subject replacing occurences of 2 or more
@@ -511,7 +511,7 @@ with a single key and value, having the key and value both contain the subject.
 
 sub to_hash {
     my $self = CORE::shift;
-    goto {"$self"=>"$self"};
+    return {"$self"=>"$self"};
 }
 
 =method to_integer
@@ -607,7 +607,7 @@ sub uppercase {
 =method words
 
     my $string = "is this a bug we're experiencing";
-    $self->words; # ["is","this","a","bug","we're","experiencing"]
+    $string->words; # ["is","this","a","bug","we're","experiencing"]
 
 The words method splits the subject into a list of strings, separating each
 group of characters by 1 or more consecutive spaces, and returns that list as an
