@@ -211,6 +211,8 @@ The nots export group exports all functions which have the C<not_> prefix. These
 functions take a single argument and perform non-fatal negated type checking and
 return true or false. The follow is a list of functions exported by this group:
 
+=over 4
+
 =item *
 
 not_aref
@@ -356,6 +358,8 @@ These functions take a single argument/expression and perform fatal type
 checking operation returning the argument/expression if successful. The follow
 is a list of functions exported by this group:
 
+=over 4
+
 =item *
 
 type_aref
@@ -500,6 +504,8 @@ The typesof export group exports all functions which have the C<typeof_> prefix.
 These functions take no argument and return a type-validation code-routine to be
 used with your object-system of choice. The follow is a list of functions
 exported by this group:
+
+=over 4
 
 =item *
 
