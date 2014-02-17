@@ -29,7 +29,9 @@ use Scalar::Util ();
 Array methods work on array references. Users of these methods should be aware
 of the methods that modify the array reference itself as opposed to returning a
 new array reference. Unless stated, it may be safe to assume that the following
-methods copy, modify and return new array references based on their subjects.
+methods copy, modify and return new array references based on their subjects. It
+is not necessary to use this module as it is loaded automatically by the
+L<Bubblegum> class.
 
 =cut
 

@@ -17,7 +17,8 @@ with 'Bubblegum::Object::Role::Item';
 =head1 DESCRIPTION
 
 Undefined methods work on variables whose data meets the criteria for being
-undefined.
+undefined. It is not necessary to use this module as it is loaded automatically
+by the L<Bubblegum> class.
 
 =cut
 

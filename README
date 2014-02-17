@@ -14,12 +14,6 @@ SYNOPSIS
         has typeof_str, 'firstname';
         has typeof_str, 'lastname';
 
-        has business => (
-            is   => 'ro',
-            isa  => typeof_object,
-            lazy => 1
-        );
-
         sub say_hello {
             my $self    = shift;
             my $subject = type_str shift;

@@ -15,7 +15,9 @@ use Bubblegum::Class;
 =head1 DESCRIPTION
 
 Bubblegum::Object::Instance is a container class which merely provides a
-consistent interface for accessing and operating on various data structures.
+consistent interface for accessing and operating on various data structures. It
+is not necessary to use this module as it is loaded automatically by the
+L<Bubblegum> class.
 
 =cut
 

@@ -19,7 +19,9 @@ with 'Bubblegum::Object::Role::Value';
 
 =head1 DESCRIPTION
 
-Scalar methods work on data that meets the criteria for being a defined.
+Scalar methods work on data that meets the criteria for being a defined. It is
+not necessary to use this module as it is loaded automatically by the
+L<Bubblegum> class.
 
 =cut
 

@@ -20,7 +20,8 @@ with 'Bubblegum::Object::Role::Value';
 
 Number methods work on data that meets the criteria for being a number. A number
 holds and manipulates an arbitrary sequence of bytes, typically representing
-numberic characters (0-9).
+numberic characters (0-9). It is not necessary to use this module as it is
+loaded automatically by the L<Bubblegum> class.
 
 =cut
 

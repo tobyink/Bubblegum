@@ -18,7 +18,8 @@ use Class::Forward;
 =head1 DESCRIPTION
 
 Universal methods work on variables whose data meets the criteria for being
-defined.
+defined. It is not necessary to use this module as it is loaded automatically by
+the L<Bubblegum> class.
 
 =cut
 

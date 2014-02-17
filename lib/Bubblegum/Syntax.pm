@@ -47,7 +47,7 @@ use base 'Exporter::Tiny';
 
 =head1 DESCRIPTION
 
-Bubblegum::Syntax is a sugar layer for Bubblegum applications with a focus on
+Bubblegum::Syntax is a sugar layer for L<Bubblegum> applications with a focus on
 minimalism and data integrity.
 
 =head1 EXPORTS
@@ -58,6 +58,62 @@ to a particular group of functions there are export tags which can be used to
 export sets of functions by group name. Any function can also be exported
 individually. The following are a list of functions and groups currently
 available:
+
+=head2 -attr
+
+The attr export group currently exports a single functions which overrides the
+C<has> accessor maker in the calling class and implements a more flexible
+interface specification. If the C<has> function does not exist in the caller's
+namespace then override will be aborted, otherwise, the C<has> function will now
+support the following:
+
+    has 'attr1';
+
+is the equivalent of:
+
+    has 'attr1' => (
+        is => 'ro',
+    );
+
+and if type validators are exported via C<-typesof>:
+
+    use Bubblegum::Syntax -typesof;
+
+    has typeof_obj, 'attr2';
+
+is the equivalent of:
+
+    has 'attr2' => (
+        is  => 'ro',
+        isa => typeof_obj,
+    );
+
+and/or including a default value, for example:
+
+    use Bubblegum::Syntax -typesof;
+
+    has 'attr1' => sub {
+        # set default for attr1
+    };
+
+    has typeof_obj, 'attr2' => sub {
+        # set default for attr2
+    };
+
+is the equivalent of:
+
+    has 'attr1' => (
+        is      => 'ro',
+        lazy    => 1,
+        default => sub {}
+    );
+
+    has 'attr2' => (
+        is      => 'ro',
+        isa     => typeof_obj,
+        lazy    => 1,
+        default => sub {}
+    );
 
 =head2 -isas
 
@@ -795,8 +851,9 @@ our %EXPORT_TAGS = (
             my $default = $_[1] if isa_coderef($_[1]);
             if ((@_ == 1 xor @_ == 2) && $names) {
                 for my $name (@{$names}) {
-                    my %props = (is => 'ro', lazy => 1);
+                    my %props = (is => 'ro');
                     $props{isa} = $type if $type;
+                    $props{lazy} = 1 if $default;
                     $props{default} = $default if $default;
                     $builder->($name => (%props));
                 }

@@ -18,7 +18,8 @@ with 'Bubblegum::Object::Role::Ref';
 
 =head1 DESCRIPTION
 
-Code methods work on code references.
+Code methods work on code references. It is not necessary to use this module as
+it is loaded automatically by the L<Bubblegum> class.
 
 =cut
 
