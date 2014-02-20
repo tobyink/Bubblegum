@@ -830,6 +830,7 @@ our @EXPORT_OK = qw(
     find
     here
     home
+    is
     merge
     load
     path
@@ -879,6 +880,7 @@ our %EXPORT_TAGS = (
             find
             here
             home
+            is
             merge
             load
             path
@@ -1089,6 +1091,26 @@ sub home {
     my $user = $ENV{USER} // user();
     my $func = $user ? 'users_home' : 'my_home';
     return eval { path(File::HomeDir->can($func)->($user)) };
+}
+
+=function is
+
+The is function returns a code reference from a string. The name C<is> is an
+acronym for inline-subroutine-from-string and exists to make creating tiny
+routines from strings easier. This function is especially useful when used with
+methods that require code-references as arguments; e.g. chained method calls.
+
+    ['a'..'z']->each_value(is '$food; say $food');
+
+=cut
+
+sub is ($) {
+    return eval sprintf
+        'sub {%s}', join ';',
+            map { /^\$\w+$/ ? "my$_=shift" : "$_" }
+            map { /^\@\w+$/ ? "my$_=\@_"   : "$_" }
+            map { /^\%\w+$/ ? "my$_=\@_"   : "$_" }
+            split /;/, shift;
 }
 
 =function load
