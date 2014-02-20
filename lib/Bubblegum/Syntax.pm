@@ -34,14 +34,14 @@ use base 'Exporter::Tiny';
     use Bubblegum::Class;
     use Bubblegum::Syntax -attr, -typesof;
 
-    has typeof_href, 'config';
+    has typeof_obj, 'config';
 
     package main;
 
     use Bubblegum;
     use Bubblegum::Syntax -isas, -utils;
 
-    my $data   = file('./config')->slurp;
+    my $data   = file('/tmp/config')->slurp;
     my $config = $data->yaml->decode if isa_str $data;
     my $server = Server->new(config => $config);
 
