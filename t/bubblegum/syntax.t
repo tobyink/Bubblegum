@@ -388,6 +388,7 @@ my @typelib = qw(
     can_ok 'utils', 'dump';
     can_ok 'utils', 'file';
     can_ok 'utils', 'find';
+    can_ok 'utils', 'here';
     can_ok 'utils', 'home';
     can_ok 'utils', 'load';
     can_ok 'utils', 'merge';
@@ -598,7 +599,7 @@ my @typelib = qw(
 {
     package misc::utils;
     use Bubblegum::Syntax qw(
-        cwd date date_epoch date_format dump file find home merge load path
+        cwd date date_epoch date_format dump file find here home merge load path
         quote raise script unquote user user_info which
     );
     use Test::More;
@@ -609,6 +610,7 @@ my @typelib = qw(
     can_ok 'misc::utils', 'dump';
     can_ok 'misc::utils', 'file';
     can_ok 'misc::utils', 'find';
+    can_ok 'misc::utils', 'here';
     can_ok 'misc::utils', 'home';
     can_ok 'misc::utils', 'load';
     can_ok 'misc::utils', 'merge';

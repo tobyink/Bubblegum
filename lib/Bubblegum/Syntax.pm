@@ -9,10 +9,12 @@ use Bubblegum::Exception;
 use Try::Tiny;
 use Hash::Merge::Simple 'merge';
 
+use Cwd ();
 use Class::Load ();
 use Data::Dumper ();
 use File::HomeDir ();
 use File::Find::Rule ();
+use File::Spec ();
 use File::Which ();
 use DateTime::Tiny ();
 use Path::Tiny ();
@@ -826,6 +828,7 @@ our @EXPORT_OK = qw(
     dump
     file
     find
+    here
     home
     merge
     load
@@ -874,6 +877,7 @@ our %EXPORT_TAGS = (
             dump
             file
             find
+            here
             home
             merge
             load
@@ -955,7 +959,7 @@ The cwd function returns a L<Path::Tiny> instance for operating on the current
 working directory.
 
     my $dir = cwd;
-    my @subdirs = $dir->children;
+    my @more = $dir->children;
 
 =cut
 
@@ -1053,13 +1057,31 @@ sub find {
         File::Find::Rule->file()->name($spec)->in($path) ];
 }
 
+=function here
+
+The here function returns a L<Path::Tiny> instance for operating on the directory
+of the file the function is called from.
+
+    my $dir = here;
+    my @more = $dir->children;
+
+=cut
+
+sub here {
+    return path(
+        File::Spec->rel2abs(
+            join '', (File::Spec->splitpath((caller 1)[1]))[0,1]
+        )
+    );
+}
+
 =function home
 
 The home function returns a L<Path::Tiny> instance for operating on the current
 user's home directory.
 
     my $dir = home;
-    my @subdirs = $dir->children;
+    my @more = $dir->children;
 
 =cut
 
@@ -1087,7 +1109,7 @@ The path function returns a L<Path::Tiny> instance for operating on the
 directory specified.
 
     my $dir = path '/';
-    my @subdirs = $dir->children;
+    my @more = $dir->children;
 
 =cut
 

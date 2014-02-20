@@ -21,12 +21,11 @@ sub import {
     use Bubblegum::Class;
     use Bubblegum::Syntax -attr, -types, -typesof;
 
-    has typeof_num, 'id';
     has typeof_str, 'firstname';
     has typeof_str, 'lastname';
 
     sub say_hello {
-        my $self    = shift;
+        my $self    = type_obj shift;
         my $subject = type_str shift;
 
         return sprintf 'Hello %s. My name is %s, nice to meet you.',
