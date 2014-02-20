@@ -39,13 +39,11 @@ use base 'Exporter::Tiny';
     package main;
 
     use Bubblegum;
-    use Bubblegum::Syntax -utils;
+    use Bubblegum::Syntax -isas, -utils;
 
-    my $data = file('./config')->slurp;
+    my $data   = file('./config')->slurp;
     my $config = $data->yaml->decode if isa_str $data;
-
-    my $server = Server->new(config =>
-        $config->lookup('node1.webserver'));
+    my $server = Server->new(config => $config);
 
 =head1 DESCRIPTION
 
@@ -741,6 +739,10 @@ find
 
 =item *
 
+here
+
+=item *
+
 home
 
 =item *
@@ -782,6 +784,10 @@ user_info
 =item *
 
 which
+
+=item *
+
+will
 
 =back
 
@@ -830,7 +836,6 @@ our @EXPORT_OK = qw(
     find
     here
     home
-    is
     merge
     load
     path
@@ -841,6 +846,7 @@ our @EXPORT_OK = qw(
     user
     user_info
     which
+    will
 );
 our %EXPORT_TAGS = (
     attr => sub {
@@ -880,7 +886,6 @@ our %EXPORT_TAGS = (
             find
             here
             home
-            is
             merge
             load
             path
@@ -891,6 +896,7 @@ our %EXPORT_TAGS = (
             user
             user_info
             which
+            will
         )
     }
 );
@@ -1093,26 +1099,6 @@ sub home {
     return eval { path(File::HomeDir->can($func)->($user)) };
 }
 
-=function is
-
-The is function returns a code reference from a string. The name C<is> is an
-acronym for inline-subroutine-from-string and exists to make creating tiny
-routines from strings easier. This function is especially useful when used with
-methods that require code-references as arguments; e.g. chained method calls.
-
-    ['a'..'z']->each_value(is '$food; say $food');
-
-=cut
-
-sub is ($) {
-    return eval sprintf
-        'sub {%s}', join ';',
-            map { /^\$\w+$/ ? "my$_=shift" : "$_" }
-            map { /^\@\w+$/ ? "my$_=\@_"   : "$_" }
-            map { /^\%\w+$/ ? "my$_=\@_"   : "$_" }
-            split /;/, shift;
-}
-
 =function load
 
 The load function uses L<Class::Load> to require modules at runtime.
@@ -1235,6 +1221,34 @@ operating on the located executable program.
 
 sub which {
     return path(File::Which::which(@_));
+}
+
+=function will
+
+The will function will construct and return a code reference from a string or
+set of strings belonging to a single unit of execution. This function exists to
+make creating tiny routines from strings easier. This function is especially
+useful when used with methods that require code-references as arguments; e.g.
+callbacks and chained method calls. Note, if the string begins with a semi-colon
+separated list of variables, e.g. scalar, array or hash, then those variables
+will automatically be expanded and assigned data from the default array.
+
+    will '$output; say $output';
+
+    # is equivelent to
+    sub { my $output = shift; say $output; };
+
+=cut
+
+sub will {
+    return eval sprintf
+        'sub {%s}',
+            join ';',
+                map { /^\s*\$\w+$/ ? "my$_=shift" : "$_" }
+                map { /^\s*\@\w+$/ ? "my$_=\@_"   : "$_" }
+                map { /^\s*\%\w+$/ ? "my$_=\@_"   : "$_" }
+            split /;/,
+            join ';', @_;
 }
 
 1;

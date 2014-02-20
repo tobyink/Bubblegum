@@ -115,6 +115,7 @@ using Bubblegum:
         10->typeof('null')                      # false
         10->typeof('num')                       # true
         10->typeof('str')                       # false
+        10->typeof('undef')                     # false
 
     # include Moo as your default object-system (optional)
 

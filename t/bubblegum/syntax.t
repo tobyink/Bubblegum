@@ -380,28 +380,28 @@ my @typelib = qw(
 {
     package utils;
     use Bubblegum::Syntax -utils;
-    require Test::More;
-    Test::More::can_ok 'utils', 'cwd';
-    Test::More::can_ok 'utils', 'date';
-    Test::More::can_ok 'utils', 'date_epoch';
-    Test::More::can_ok 'utils', 'date_format';
-    Test::More::can_ok 'utils', 'dump';
-    Test::More::can_ok 'utils', 'file';
-    Test::More::can_ok 'utils', 'find';
-    Test::More::can_ok 'utils', 'here';
-    Test::More::can_ok 'utils', 'home';
-    Test::More::can_ok 'utils', 'is';
-    Test::More::can_ok 'utils', 'load';
-    Test::More::can_ok 'utils', 'merge';
-    Test::More::can_ok 'utils', 'path';
-    Test::More::can_ok 'utils', 'quote';
-    Test::More::can_ok 'utils', 'raise';
-    Test::More::can_ok 'utils', 'script';
-    Test::More::can_ok 'utils', 'unquote';
-    Test::More::can_ok 'utils', 'user';
-    Test::More::can_ok 'utils', 'user_info';
-    Test::More::can_ok 'utils', 'which';
-    Test::More::is 'Bubblegum::Exception', ref do { eval {raise 'wtf'}; $@ };
+    use Test::More;
+    can_ok 'utils', 'cwd';
+    can_ok 'utils', 'date';
+    can_ok 'utils', 'date_epoch';
+    can_ok 'utils', 'date_format';
+    can_ok 'utils', 'dump';
+    can_ok 'utils', 'file';
+    can_ok 'utils', 'find';
+    can_ok 'utils', 'here';
+    can_ok 'utils', 'home';
+    can_ok 'utils', 'load';
+    can_ok 'utils', 'merge';
+    can_ok 'utils', 'path';
+    can_ok 'utils', 'quote';
+    can_ok 'utils', 'raise';
+    can_ok 'utils', 'script';
+    can_ok 'utils', 'unquote';
+    can_ok 'utils', 'user';
+    can_ok 'utils', 'user_info';
+    can_ok 'utils', 'which';
+    can_ok 'utils', 'will';
+    is 'Bubblegum::Exception', ref do { eval {raise 'wtf'}; $@ };
 }
 {
     package misc::isas;
@@ -600,31 +600,31 @@ my @typelib = qw(
 {
     package misc::utils;
     use Bubblegum::Syntax qw(
-        cwd date date_epoch date_format dump file find here home is merge load
-        path quote raise script unquote user user_info which
+        cwd date date_epoch date_format dump file find here home merge load
+        path quote raise script unquote user user_info which will
     );
-    require Test::More;
-    Test::More::can_ok 'misc::utils', 'cwd';
-    Test::More::can_ok 'misc::utils', 'date';
-    Test::More::can_ok 'misc::utils', 'date_epoch';
-    Test::More::can_ok 'misc::utils', 'date_format';
-    Test::More::can_ok 'misc::utils', 'dump';
-    Test::More::can_ok 'misc::utils', 'file';
-    Test::More::can_ok 'misc::utils', 'find';
-    Test::More::can_ok 'misc::utils', 'here';
-    Test::More::can_ok 'misc::utils', 'home';
-    Test::More::can_ok 'misc::utils', 'is';
-    Test::More::can_ok 'misc::utils', 'load';
-    Test::More::can_ok 'misc::utils', 'merge';
-    Test::More::can_ok 'misc::utils', 'path';
-    Test::More::can_ok 'misc::utils', 'quote';
-    Test::More::can_ok 'misc::utils', 'raise';
-    Test::More::can_ok 'misc::utils', 'script';
-    Test::More::can_ok 'misc::utils', 'unquote';
-    Test::More::can_ok 'misc::utils', 'user';
-    Test::More::can_ok 'misc::utils', 'user_info';
-    Test::More::can_ok 'misc::utils', 'which';
-    Test::More::is 'Bubblegum::Exception', ref do { eval {raise 'wtf'}; $@ };
+    use Test::More;
+    can_ok 'misc::utils', 'cwd';
+    can_ok 'misc::utils', 'date';
+    can_ok 'misc::utils', 'date_epoch';
+    can_ok 'misc::utils', 'date_format';
+    can_ok 'misc::utils', 'dump';
+    can_ok 'misc::utils', 'file';
+    can_ok 'misc::utils', 'find';
+    can_ok 'misc::utils', 'here';
+    can_ok 'misc::utils', 'home';
+    can_ok 'misc::utils', 'load';
+    can_ok 'misc::utils', 'merge';
+    can_ok 'misc::utils', 'path';
+    can_ok 'misc::utils', 'quote';
+    can_ok 'misc::utils', 'raise';
+    can_ok 'misc::utils', 'script';
+    can_ok 'misc::utils', 'unquote';
+    can_ok 'misc::utils', 'user';
+    can_ok 'misc::utils', 'user_info';
+    can_ok 'misc::utils', 'which';
+    can_ok 'misc::utils', 'will';
+    is 'Bubblegum::Exception', ref do { eval {raise 'wtf'}; $@ };
 }
 
 done_testing;
