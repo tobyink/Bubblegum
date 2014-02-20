@@ -17,9 +17,9 @@ use feature ();
 use Module::Find 'usesub';
 use parent 'autobox';
 
-requires 'import';
-
 # VERSION
+
+requires 'import';
 
 sub prerequisites {
     my ($class, $target) = @_;

@@ -4,8 +4,8 @@ use Bubblegum::Role 'requires', 'with';
 
 with 'Bubblegum::Object::Role::Collection';
 
-requires 'slice';
-
 # VERSION
+
+requires 'slice';
 
 1;

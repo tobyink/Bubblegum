@@ -5,6 +5,8 @@ use Bubblegum::Syntax -types;
 
 with 'Bubblegum::Object::Role::Value';
 
+# VERSION
+
 requires 'defined';
 requires 'grep';
 requires 'head';
@@ -14,8 +16,6 @@ requires 'map';
 requires 'reverse';
 requires 'sort';
 requires 'tail';
-
-# VERSION
 
 sub reduce {
     my $self = CORE::shift;
