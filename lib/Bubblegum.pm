@@ -181,7 +181,7 @@ Modern Minimalistic Object System
 
 =item *
 
-Classified Optional Features and Enhancements
+Optional Features and Enhancements
 
 =back
 
@@ -197,6 +197,23 @@ of decisions a programmer has to make increases, their productivity decreases.
 Enforced consistency is a path many other programming languages and frameworks
 have adopted to great effect, so Bubblegum is one approach towards that end in
 Perl.
+
+=head2 Bubblegum Syntax
+
+Additional features and enhancements can be enabled by using the
+L<Bubblegum::Syntax> module which exports type contraint functions, data
+validation functions and various utility functions. Hardcore Perl hackers around
+the world are working tirelessly around the clock to give us a better system for
+elegantly defining objects and classes using modern Perl best practices, ... but
+in the meantime, have some Bubblegum.
+
+    use Bubblegum;
+    use Bubblegum::Syntax -all;
+
+    # take a moment to reason about the following Perl example.
+
+    my $print = will '@output; say @output';
+    $print->curry(1..10)->call; # 12345678910
 
 =head2 Bubblegum Topology
 
