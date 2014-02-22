@@ -1,10 +1,10 @@
 # ABSTRACT: Common Methods for Operating on Scalars
 package Bubblegum::Object::Scalar;
 
+use Scalar::Util ();
+
 use Bubblegum::Class 'with';
 use Bubblegum::Syntax -types;
-
-use Scalar::Util ();
 
 with 'Bubblegum::Object::Role::Value';
 

@@ -2,7 +2,7 @@ NAME
     Bubblegum - Opinionated Modern Perl Development Framework
 
 VERSION
-    version 0.11
+    version 0.12
 
 SYNOPSIS
         package Person;
@@ -10,12 +10,11 @@ SYNOPSIS
         use Bubblegum::Class;
         use Bubblegum::Syntax -attr, -types, -typesof;
 
-        has typeof_num, 'id';
         has typeof_str, 'firstname';
         has typeof_str, 'lastname';
 
         sub say_hello {
-            my $self    = shift;
+            my $self    = type_obj shift;
             my $subject = type_str shift;
 
             return sprintf 'Hello %s. My name is %s, nice to meet you.',
@@ -105,6 +104,7 @@ DESCRIPTION
             10->typeof('null')                      # false
             10->typeof('num')                       # true
             10->typeof('str')                       # false
+            10->typeof('undef')                     # false
 
         # include Moo as your default object-system (optional)
 
@@ -145,7 +145,7 @@ FEATURES
 
     *   Modern Minimalistic Object System
 
-    *   Classified Optional Features and Enhancements
+    *   Optional Features and Enhancements
 
 RATIONALE
     The TIMTOWTDI (there is more than one way to do it) motto has been a
@@ -159,6 +159,23 @@ RATIONALE
     consistency is a path many other programming languages and frameworks
     have adopted to great effect, so Bubblegum is one approach towards that
     end in Perl.
+
+  Bubblegum Syntax
+    Additional features and enhancements can be enabled by using the
+    Bubblegum::Syntax module which exports type contraint functions, data
+    validation functions and various utility functions. Hardcore Perl
+    hackers around the world are working tirelessly around the clock to give
+    us a better system for elegantly defining objects and classes using
+    modern Perl best practices, ... but in the meantime, have some
+    Bubblegum.
+
+        use Bubblegum;
+        use Bubblegum::Syntax -all;
+
+        # take a moment to reason about the following Perl example.
+
+        my $print = will '@output; say @output';
+        $print->curry(1..10)->call; # 12345678910
 
   Bubblegum Topology
     Bubblegum type classes are built as extensions to the autobox type

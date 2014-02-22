@@ -1,10 +1,10 @@
 # ABSTRACT: Common Methods for Operating on Defined Values
 package Bubblegum::Object::Universal;
 
+use Class::Forward;
+
 use Bubblegum::Class 'with';
 use Bubblegum::Syntax -types, 'load', 'raise';
-
-use Class::Forward;
 
 # VERSION
 

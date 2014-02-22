@@ -1,10 +1,11 @@
 package Bubblegum::Wrapper::Digest;
 
 use Bubblegum::Class;
-use Bubblegum::Syntax 'raise';
 
 use Digest::MD5 ();
 use Digest::SHA ();
+
+use Bubblegum::Syntax 'raise';
 
 extends 'Bubblegum::Object::Instance';
 

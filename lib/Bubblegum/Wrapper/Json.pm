@@ -1,6 +1,7 @@
 package Bubblegum::Wrapper::Json;
 
 use Bubblegum::Class;
+
 use JSON::Tiny ();
 
 extends 'Bubblegum::Object::Instance';

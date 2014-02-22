@@ -1,10 +1,10 @@
 # ABSTRACT: Common Methods for Operating on Strings
 package Bubblegum::Object::String;
 
+use Scalar::Util ();
+
 use Bubblegum::Class 'with';
 use Bubblegum::Syntax -types;
-
-use Scalar::Util ();
 
 with 'Bubblegum::Object::Role::Defined';
 with 'Bubblegum::Object::Role::Comparison';

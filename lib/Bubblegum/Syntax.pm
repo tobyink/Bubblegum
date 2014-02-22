@@ -2,26 +2,29 @@
 package Bubblegum::Syntax;
 
 use 5.10.0;
-use utf8::all;
+
 use strict;
+use utf8::all;
 use warnings;
+
 use Bubblegum::Exception;
 use Try::Tiny;
-use Hash::Merge::Simple 'merge';
 
-use Cwd ();
 use Class::Load ();
+use Cwd ();
 use Data::Dumper ();
-use File::HomeDir ();
+use DateTime::Tiny ();
 use File::Find::Rule ();
+use File::HomeDir ();
 use File::Spec ();
 use File::Which ();
-use DateTime::Tiny ();
 use Path::Tiny ();
 use Time::Format ();
 use Time::ParseDate ();
 use Type::Params ();
 use Types::Standard ();
+
+use Hash::Merge::Simple 'merge';
 
 use base 'Exporter::Tiny';
 

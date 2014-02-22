@@ -4,10 +4,10 @@ package Bubblegum::Object::Array;
 use Bubblegum::Class 'with';
 use Bubblegum::Syntax -types;
 
+with 'Bubblegum::Object::Role::Defined';
 with 'Bubblegum::Object::Role::Indexed';
 with 'Bubblegum::Object::Role::List';
 with 'Bubblegum::Object::Role::Ref';
-with 'Bubblegum::Object::Role::Defined';
 
 use Syntax::Keyword::Junction::All  ();
 use Syntax::Keyword::Junction::Any  ();

@@ -1,8 +1,8 @@
 package Bubblegum::Wrapper::Encoder;
 
 use Bubblegum::Class;
-use Bubblegum::Syntax 'raise';
 
+use Bubblegum::Syntax 'raise';
 use Encode 'find_encoding';
 
 extends 'Bubblegum::Object::Instance';
