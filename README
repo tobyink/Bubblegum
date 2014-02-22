@@ -237,11 +237,28 @@ RATIONALE
 
         # {"1":2,"3":{"4":{"7":{"8":9,"10":11},"5":6}}}
 
-    Bubblegum ships with 5 wrappers, Bubblegum::Wrapper::Digest for hashing,
-    Bubblegum::Wrapper::Dumper for Perl serialization,
-    Bubblegum::Wrapper::Encoder for content encoding,
-    Bubblegum::Wrapper::Json for JSON serialization and
-    Bubblegum::Wrapper::Yaml for YAML serialization.
+    The follow list of wrappers are distributed with the Bubblegum
+    distribution:
+
+   Digest Wrapper
+    The Bubblegum digest wrapper, Bubblegum::Wrapper::Digest, provides
+    access to various hashing algorithms to encode/decode messages.
+
+   Dumper Wrapper
+    The Bubblegum data-dumper wrapper, Bubblegum::Wrapper::Dumper, provides
+    functionality to encode/decode perl data structures.
+
+   Encoder Wrapper
+    The Bubblegum encoding wrapper, Bubblegum::Wrapper::Encoder, provides
+    access to content encoding/decoding functionality.
+
+   JSON Wrapper
+    The Bubblegum json wrapper, Bubblegum::Wrapper::Json, provides
+    functionality to encode/decode perl data structures as JSON documents.
+
+   YAML Wrapper
+    The Bubblegum yaml wrapper, Bubblegum::Wrapper::Yaml, provides
+    functionality to encode/decode perl data structures as YAML documents.
 
   Bubblegum Data Type Operations
     The following classes have methods which can be invoked by variables

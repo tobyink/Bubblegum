@@ -277,10 +277,32 @@ example:
 
     # {"1":2,"3":{"4":{"7":{"8":9,"10":11},"5":6}}}
 
-Bubblegum ships with 5 wrappers, L<Bubblegum::Wrapper::Digest> for hashing,
-L<Bubblegum::Wrapper::Dumper> for Perl serialization,
-L<Bubblegum::Wrapper::Encoder> for content encoding, L<Bubblegum::Wrapper::Json>
-for JSON serialization and L<Bubblegum::Wrapper::Yaml> for YAML serialization.
+The follow list of wrappers are distributed with the Bubblegum distribution:
+
+=head3 Digest Wrapper
+
+The Bubblegum digest wrapper, L<Bubblegum::Wrapper::Digest>, provides access to
+various hashing algorithms to encode/decode messages.
+
+=head3 Dumper Wrapper
+
+The Bubblegum data-dumper wrapper, L<Bubblegum::Wrapper::Dumper>, provides
+functionality to encode/decode perl data structures.
+
+=head3 Encoder Wrapper
+
+The Bubblegum encoding wrapper, L<Bubblegum::Wrapper::Encoder>, provides access
+to content encoding/decoding functionality.
+
+=head3 JSON Wrapper
+
+The Bubblegum json wrapper, L<Bubblegum::Wrapper::Json>, provides functionality
+to encode/decode perl data structures as JSON documents.
+
+=head3 YAML Wrapper
+
+The Bubblegum yaml wrapper, L<Bubblegum::Wrapper::Yaml>, provides functionality
+to encode/decode perl data structures as YAML documents.
 
 =head2 Bubblegum Data Type Operations
 
