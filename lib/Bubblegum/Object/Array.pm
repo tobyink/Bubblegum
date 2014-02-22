@@ -184,7 +184,7 @@ values until all values have been seen.
 
 sub each_n_values {
     my $self   = CORE::shift;
-    my $number = $_[0] ? type_num  CORE::shift : 2;
+    my $number = $_[0] ? type_num CORE::shift : 2;
     my $code   = type_cref CORE::shift;
     my @values = @$self;
 
