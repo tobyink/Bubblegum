@@ -41,9 +41,9 @@ my @typelib = qw(
     ok isa_defined '';
     ok isa_defined 0;
     ok !isa_defined undef;
-    ok isa_fh do { open my $fh, '<', '/'; $fh };
+    ok isa_fh do { open my $fh, '<', \''; $fh };
     ok !isa_fh \'';
-    ok isa_filehandle do { open my $fh, '<', '/'; $fh };
+    ok isa_filehandle do { open my $fh, '<', \''; $fh };
     ok !isa_filehandle \'';
     ok isa_glob \*Test::More::EXPORT;
     ok !isa_glob \'';
@@ -140,9 +140,9 @@ my @typelib = qw(
     ok !not_defined '';
     ok !not_defined 0;
     ok not_defined undef;
-    ok !not_fh do { open my $fh, '<', '/'; $fh };
+    ok !not_fh do { open my $fh, '<', \''; $fh };
     ok not_fh \'';
-    ok !not_filehandle do { open my $fh, '<', '/'; $fh };
+    ok !not_filehandle do { open my $fh, '<', \''; $fh };
     ok not_filehandle \'';
     ok !not_glob \*Test::More::EXPORT;
     ok not_glob \'';
@@ -239,9 +239,9 @@ my @typelib = qw(
     ok defined type_defined '';
     ok defined type_defined 0;
     ok do { eval {type_defined undef}; $@ };
-    ok type_fh do { open my $fh, '<', '/'; $fh };
+    ok type_fh do { open my $fh, '<', \''; $fh };
     ok do { eval {type_fh \''}; $@ };
-    ok type_filehandle do { open my $fh, '<', '/'; $fh };
+    ok type_filehandle do { open my $fh, '<', \''; $fh };
     ok do { eval {type_filehandle \''}; $@ };
     ok type_glob \*Test::More::EXPORT;
     ok do { eval {type_glob \''}; $@ };
