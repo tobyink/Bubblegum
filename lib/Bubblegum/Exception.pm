@@ -10,4 +10,8 @@ use base 'Exception::Tiny';
 
 # VERSION
 
+sub data {
+    return shift->{data};
+}
+
 1;
