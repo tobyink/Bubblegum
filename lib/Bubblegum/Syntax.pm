@@ -809,27 +809,27 @@ our $EXTS = {
     UNIVERSAL => 'Bubblegum::Object::Universal',
 };
 
-my %TYPES = (
-    ArrayRef   => ['aref', 'arrayref'],
-    Bool       => ['bool', 'boolean'],
-    ClassName  => ['class', 'classname'],
-    CodeRef    => ['cref', 'coderef'],
-    Defined    => ['def', 'defined'],
-    FileHandle => ['fh', 'filehandle'],
-    GlobRef    => ['glob', 'globref'],
-    HashRef    => ['href', 'hashref'],
-    Int        => ['int', 'integer'],
-    Num        => ['num', 'number'],
-    Object     => ['obj', 'object'],
-    Ref        => ['ref', 'reference'],
-    RegexpRef  => ['rref', 'regexpref'],
-    ScalarRef  => ['sref', 'scalarref'],
-    Str        => ['str', 'string'],
-    Undef      => ['nil', 'null', 'undef', 'undefined'],
-    Value      => ['val', 'value'],
-);
+my $TYPES = {
+    ArrayRef   => [qw(aref arrayref)],
+    Bool       => [qw(bool boolean)],
+    ClassName  => [qw(class classname)],
+    CodeRef    => [qw(cref coderef)],
+    Defined    => [qw(def defined)],
+    FileHandle => [qw(fh filehandle)],
+    GlobRef    => [qw(glob globref)],
+    HashRef    => [qw(href hashref)],
+    Int        => [qw(int integer)],
+    Num        => [qw(num number)],
+    Object     => [qw(obj object)],
+    Ref        => [qw(ref reference)],
+    RegexpRef  => [qw(rref regexpref)],
+    ScalarRef  => [qw(sref scalarref)],
+    Str        => [qw(str string)],
+    Undef      => [qw(nil null undef undefined)],
+    Value      => [qw(val value)],
+};
 
-our @EXPORT_OK = qw(
+my @UTILS = qw(
     cwd
     date
     date_epoch
@@ -851,6 +851,9 @@ our @EXPORT_OK = qw(
     which
     will
 );
+
+our @EXPORT_OK = @UTILS;
+
 our %EXPORT_TAGS = (
     attr => sub {
         my $args    = pop;
@@ -879,35 +882,14 @@ our %EXPORT_TAGS = (
         return;
     },
     utils => sub {
-        return qw(
-            cwd
-            date
-            date_epoch
-            date_format
-            dump
-            file
-            find
-            here
-            home
-            merge
-            load
-            path
-            quote
-            raise
-            script
-            unquote
-            user
-            user_info
-            which
-            will
-        )
+        return @UTILS;
     }
 );
 {
     no strict 'refs';
     my $package  = __PACKAGE__;
     my $compiler = Type::Params->can('compile');
-    while (my($class, $names) = each %TYPES) {
+    while (my($class, $names) = each %{$TYPES}) {
         my $validator  = Types::Standard->can($class);
         my $validation = $compiler->($validator->());
         for my $name (@{$names}) {
@@ -1156,7 +1138,7 @@ trap.
 
 sub raise {
     my $class = 'Bubblegum::Exception';
-    @_ = ($class, message => shift, data => shift // {});
+    @_ = ($class, message => shift, data => shift);
     goto $class->can('throw');
 }
 

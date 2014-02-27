@@ -19,7 +19,7 @@ sub import {
     package Person;
 
     use Bubblegum::Class;
-    use Bubblegum::Syntax -attr, -types, -typesof;
+    use Bubblegum::Syntax -all;
 
     has typeof_str, 'firstname';
     has typeof_str, 'lastname';
@@ -52,6 +52,9 @@ no experimental features used. B<Note: This is an early release available for
 testing and feedback and as such is subject to change.>
 
     use Bubblegum;
+    # or Bubblegum::Class;
+    # or Bubblegum::Role
+    # or Bubblegum::Singleton;
 
 is equivalent to
 
@@ -119,9 +122,9 @@ using Bubblegum:
 
     # include Moo as your default object-system (optional)
 
-        use Bubblegum::Class;                   # with Moo
-        use Bubblegum::Role;                    # with Moo::Role
-        use Bubblegum::Singleton;               # with Moo + Cached Instance
+        use Bubblegum::Class;                   # Bubblegum w/ Moo
+        use Bubblegum::Role;                    # Bubblegum w/ Moo (Role)
+        use Bubblegum::Singleton;               # Bubblegum w/ Moo (Singleton)
 
 =head1 INTRODUCTION
 
