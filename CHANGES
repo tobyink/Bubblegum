@@ -1,0 +1,46 @@
+Changelog for Bubblegum
+
+0.13 2014-02-27T09:26:27
+ - Miscellaneous cleanup of Bubblegum::Syntax and Bubblegum POD.
+ - Added data accessor to Bubblegum::Exception.
+
+0.12 2014-02-22T06:53:06
+ - Added POD for core wrappers.
+ - Miscellaneous cleanup.
+ - Fixed cpantesters reported errors.
+ - Added object role tests.
+ - Added syntax section to POD in bubblegum.
+ - Updated synopsis in syntax.
+ - Replaced function is with will in syntax.
+ - Misc. updates to object roles.
+ - Added function is to syntax.
+ - Updated POD and added here function to syntax.
+
+0.11 2014-02-17T07:41:57
+ - Fixed test failures for numbers.t on x64 arc, updated documentation.
+ - Removed Bubblegum::Constraint and added the contributors section of the
+   POD.
+ - Fixed POD errors.
+
+0.10 2014-02-15T15:10:48
+ - Added syntax class providing type functions.
+ - Relocated numeric coercion routines.
+
+0.09 2014-02-13T07:20:07
+ - Miscellaneous cleanup, updates and documentation changes.
+ - Added tests for string and scalar operations.
+ - Added tests for number operations.
+ - Added tests for integer operations.
+ - Added tests for code operations.
+ - Updated .gitignore.
+
+0.08 2014-02-03T00:56:01
+ - Added additional test coverage and fixes.
+ - Fixed homedir test in t/bubblegum/environment.t.
+ - Updated dist.ini.
+ - Updated gitignore.
+ - Add INSTALL file to the repo.
+
+0.07 2014-01-28T10:45:06
+ - Initial commit.
+
