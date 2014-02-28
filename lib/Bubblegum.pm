@@ -19,14 +19,14 @@ sub import {
     package Person;
 
     use Bubblegum::Class;
-    use Bubblegum::Syntax -all;
+    use Bubblegum::Syntax -minimal;
 
-    has typeof_str, 'firstname';
-    has typeof_str, 'lastname';
+    has _string, 'firstname';
+    has _string, 'lastname';
 
     sub say_hello {
-        my $self    = type_obj shift;
-        my $subject = type_str shift;
+        my $self    = _object shift;
+        my $subject = _string shift;
 
         return sprintf 'Hello %s. My name is %s, nice to meet you.',
             $subject->titlecase, $self->firstname->titlecase;
@@ -211,7 +211,7 @@ elegantly defining objects and classes using modern Perl best practices, ... but
 in the meantime, have some Bubblegum.
 
     use Bubblegum;
-    use Bubblegum::Syntax -all;
+    use Bubblegum::Syntax 'will';
 
     # take a moment to reason about the following Perl example.
 

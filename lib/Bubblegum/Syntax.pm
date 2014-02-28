@@ -35,17 +35,16 @@ use base 'Exporter::Tiny';
     package Server;
 
     use Bubblegum::Class;
-    use Bubblegum::Syntax -attr, -typesof;
+    use Bubblegum::Syntax -minimal;
 
-    has typeof_obj, 'config';
+    has _hashref, 'config';
 
     package main;
 
     use Bubblegum;
-    use Bubblegum::Syntax -isas, -utils;
+    use Bubblegum::Syntax qw(file);
 
-    my $data   = file('/tmp/config')->slurp;
-    my $config = $data->yaml->decode if isa_str $data;
+    my $config = file('/tmp/config')->slurp->yaml->decode;
     my $server = Server->new(config => $config);
 
 =head1 DESCRIPTION
@@ -118,11 +117,162 @@ is the equivalent of:
         default => sub {}
     );
 
+=head2 -contraints
+
+The constraints export group exports all functions which have the C<_> prefix
+and provides functionality similar to importing the L</-attr>, L</-types> and
+L</-typesof> export groups except that the functions it emits are abbreviated
+multi-purpose versions of the functions emitted by the -types and -typesof
+export groups. These functions take a single argument and perform fatal type
+checking, or, if invoked with no arguments returns a code reference to the fatal
+type checking routine. The following is a list of functions exported by this
+group:
+
+=over 4
+
+=item *
+
+_aref
+
+=item *
+
+_arrayref
+
+=item *
+
+_bool
+
+=item *
+
+_boolean
+
+=item *
+
+_class
+
+=item *
+
+_classname
+
+=item *
+
+_cref
+
+=item *
+
+_coderef
+
+=item *
+
+_def
+
+=item *
+
+_defined
+
+=item *
+
+_fh
+
+=item *
+
+_filehandle
+
+=item *
+
+_glob
+
+=item *
+
+_globref
+
+=item *
+
+_href
+
+=item *
+
+_hashref
+
+=item *
+
+_int
+
+=item *
+
+_integer
+
+=item *
+
+_num
+
+=item *
+
+_number
+
+=item *
+
+_obj
+
+=item *
+
+_object
+
+=item *
+
+_ref
+
+=item *
+
+_reference
+
+=item *
+
+_rref
+
+=item *
+
+_regexpref
+
+=item *
+
+_sref
+
+=item *
+
+_scalarref
+
+=item *
+
+_str
+
+=item *
+
+_string
+
+=item *
+
+_nil
+
+=item *
+
+_null
+
+=item *
+
+_undef
+
+=item *
+
+_undefined
+
+=back
+
 =head2 -isas
 
 The isas export group exports all functions which have the C<isa_> prefix. These
 functions take a single argument and perform non-fatal type checking and return
-true or false. The follow is a list of functions exported by this group:
+true or false. The following is a list of functions exported by this group:
 
 =over 4
 
@@ -264,11 +414,18 @@ isa_undefined
 
 =back
 
+=head2 -minimal
+
+The minimal export group is exports all functions from the L</-contraints>,
+L</-isas>, and L</-nots> export groups and the functionality provided by the
+L</-attr> tag.
+
 =head2 -nots
 
 The nots export group exports all functions which have the C<not_> prefix. These
 functions take a single argument and perform non-fatal negated type checking and
-return true or false. The follow is a list of functions exported by this group:
+return true or false. The following is a list of functions exported by this
+group:
 
 =over 4
 
@@ -561,7 +718,7 @@ type_undefined
 
 The typesof export group exports all functions which have the C<typeof_> prefix.
 These functions take no argument and return a type-validation code-routine to be
-used with your object-system of choice. The follow is a list of functions
+used with your object-system of choice. The following is a list of functions
 exported by this group:
 
 =over 4
@@ -708,7 +865,7 @@ typeof_undefined
 
 The utils export group exports all miscellaneous utility functions, e.g. file,
 path, date, etc. Many of these functions are wrappers around standard CPAN
-modules. The follow is a list of functions exported by this group:
+modules. The following is a list of functions exported by this group:
 
 =over 4
 
@@ -839,8 +996,8 @@ my @UTILS = qw(
     find
     here
     home
-    merge
     load
+    merge
     path
     quote
     raise
@@ -856,11 +1013,11 @@ our @EXPORT_OK = @UTILS;
 
 our %EXPORT_TAGS = (
     attr => sub {
+        no strict 'refs';
+        no warnings 'redefine';
         my $args    = pop;
         my $target  = $args->{into};
         my $builder = $target->can('has') or return;
-        no strict 'refs';
-        no warnings 'redefine';
         *{"${target}::has"} = sub {
             my $type    = shift if isa_coderef($_[0]);
             my $names   = isa_aref($_[0]) ? $_[0] : [$_[0]];
@@ -880,6 +1037,14 @@ our %EXPORT_TAGS = (
             return;
         };
         return;
+    },
+    minimal => sub {
+        no strict 'refs';
+        my $class = shift;
+        my $name  = 'EXPORT_TAGS';
+        my $tags  = \%{"${class}::${name}"};
+        $tags->{attr}->(@_);
+        return @{$tags->{constraints}}, @{$tags->{isas}}, @{$tags->{nots}};
     },
     utils => sub {
         return @UTILS;
@@ -940,6 +1105,15 @@ our %EXPORT_TAGS = (
                 push @{$EXPORT_TAGS{typesof}}, $name;
                 *{"${package}::${name}"} = sub () {
                     return $validation;
+                };
+            }
+            # generate for constraints
+            {
+                push @EXPORT_OK, "_$name";
+                push @{$EXPORT_TAGS{constraints}}, "_$name";
+                *{"${package}::_${name}"} = sub (;*) {
+                    return $package->can("typeof_$name") if !@_;
+                    goto   $package->can("type_$name");
                 };
             }
         }
@@ -1095,6 +1269,16 @@ The load function uses L<Class::Load> to require modules at runtime.
 sub load {
     return Class::Load::load_class(@_);
 }
+
+=function merge
+
+The merge function uses L<Hash::Merge::Simple> to merge multi hash references
+into a single hash reference. Please view the L<Hash::Merge::Simple>
+documentation for example usages.
+
+    my $hash = merge $hash_a, $hash_b, $hash_c;
+
+=cut
 
 =function path
 
