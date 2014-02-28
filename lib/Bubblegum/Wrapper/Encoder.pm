@@ -19,8 +19,8 @@ extends 'Bubblegum::Object::Instance';
 
 =head1 DESCRIPTION
 
-L<Bubblegum::Wrapper::Encoder> is a L<Bubblegum> wrapper which provides access
-to content encoding using the encode/decode methods. It is not necessary to use
+L<Bubblegum::Wrapper::Encoder> is a Bubblegum wrapper which provides access to
+content encoding using the encode/decode methods. It is not necessary to use
 this module as it is loaded automatically by the L<Bubblegum> class.
 
 =cut

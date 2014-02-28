@@ -21,7 +21,7 @@ extends 'Bubblegum::Object::Instance';
 
 =head1 DESCRIPTION
 
-L<Bubblegum::Wrapper::Digest> is a L<Bubblegum> wrapper which provides access to
+L<Bubblegum::Wrapper::Digest> is a Bubblegum wrapper which provides access to
 various hashing algorithms to encode/decode messages. It is not necessary to use
 this module as it is loaded automatically by the L<Bubblegum> class.
 

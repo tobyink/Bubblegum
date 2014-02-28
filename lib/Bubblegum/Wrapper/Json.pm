@@ -20,9 +20,9 @@ extends 'Bubblegum::Object::Instance';
 
 =head1 DESCRIPTION
 
-L<Bubblegum::Wrapper::Json> is a L<Bubblegum> wrapper which provides the
-ability to endcode/decode JSON data structures. It is not necessary to use
-this module as it is loaded automatically by the L<Bubblegum> class.
+L<Bubblegum::Wrapper::Json> is a Bubblegum wrapper which provides the ability to
+endcode/decode JSON data structures. It is not necessary to use this module as
+it is loaded automatically by the L<Bubblegum> class.
 
 =cut
 
