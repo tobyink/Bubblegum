@@ -10,13 +10,12 @@ requires 'defined';
 sub class {
     my $self = CORE::shift;
     my $map  = $Bubblegum::Syntax::EXTS;
-
     return $map->{type($self)};
 }
 
 sub of {
     my $self = CORE::shift;
-    my $type = type_str CORE::shift;
+    my $type = type_string CORE::shift;
     my $map  = $Bubblegum::Syntax::EXTS;
 
     my $alias = {

@@ -9,8 +9,7 @@ with 'Bubblegum::Object::Role::Defined';
 
 sub do {
     my $self = CORE::shift;
-    my $code = type_cref CORE::shift;
-
+    my $code = type_coderef CORE::shift;
     local $_ = $self;
     return $code->($self);
 }

@@ -19,14 +19,14 @@ sub import {
     package Person;
 
     use Bubblegum::Class;
-    use Bubblegum::Syntax -minimal;
+    use Bubblegum::Syntax -types;
 
-    has _string, 'firstname';
-    has _string, 'lastname';
+    has 'firstname';
+    has 'lastname';
 
     sub say_hello {
-        my $self    = _object shift;
-        my $subject = _string shift;
+        my $self    = type_object shift;
+        my $subject = type_string shift;
 
         return sprintf 'Hello %s. My name is %s, nice to meet you.',
             $subject->titlecase, $self->firstname->titlecase;
@@ -181,6 +181,10 @@ Modern Method Order Resolution
 =item *
 
 Modern Minimalistic Object System
+
+=item *
+
+Flexible Type Constraint System
 
 =item *
 

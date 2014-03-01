@@ -39,7 +39,7 @@ L<Bubblegum::Object::Instance> for more information.
 sub instance {
     my $self  = CORE::shift;
     my $class = load 'Bubblegum::Object::Instance';
-    return type_obj $class->new(data => $self);
+    return type_object $class->new(data => $self);
 }
 
 =method wrapper
@@ -61,10 +61,10 @@ L<Bubblegum::Wrapper::Yaml>.
 
 sub wrapper {
     my $self    = CORE::shift;
-    my $name    = type_str CORE::shift;
+    my $name    = type_string CORE::shift;
     my $space   = 'Bubblegum::Wrapper';
     my $wrapper = Class::Forward->new(namespace => $space)->forward($name);
-    my $plugin  = type_class(load($wrapper));
+    my $plugin  = type_classname(load($wrapper));
     return $plugin->new(data => $self) if $plugin;
 }
 

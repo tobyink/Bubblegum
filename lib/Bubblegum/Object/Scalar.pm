@@ -95,7 +95,7 @@ of times specified by the argument.
 
 sub repeat {
     my $self   = CORE::shift;
-    my $number = type_num CORE::shift;
+    my $number = type_number CORE::shift;
     return $self x $number;
 }
 

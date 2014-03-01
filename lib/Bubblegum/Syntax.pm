@@ -35,14 +35,17 @@ use base 'Exporter::Tiny';
     package Server;
 
     use Bubblegum::Class;
-    use Bubblegum::Syntax -minimal;
+    use Bubblegum::Syntax -typesof;
 
-    has _hashref, 'config';
+    has config => (
+        is  => 'ro',
+        isa => typeof_hashref
+    );
 
     package main;
 
     use Bubblegum;
-    use Bubblegum::Syntax qw(file);
+    use Bubblegum::Syntax 'file';
 
     my $config = file('/tmp/config')->slurp->yaml->decode;
     my $server = Server->new(config => $config);
@@ -52,6 +55,8 @@ use base 'Exporter::Tiny';
 Bubblegum::Syntax is a sugar layer for L<Bubblegum> applications with a focus on
 minimalism and data integrity.
 
+=cut
+
 =head1 EXPORTS
 
 By default, no functions are exported when using this package, all functionality
@@ -60,6 +65,8 @@ to a particular group of functions there are export tags which can be used to
 export sets of functions by group name. Any function can also be exported
 individually. The following are a list of functions and groups currently
 available:
+
+=cut
 
 =head2 -attr
 
@@ -116,6 +123,8 @@ is the equivalent of:
         lazy    => 1,
         default => sub {}
     );
+
+=cut
 
 =head2 -contraints
 
@@ -268,6 +277,8 @@ _undefined
 
 =back
 
+=cut
+
 =head2 -isas
 
 The isas export group exports all functions which have the C<isa_> prefix. These
@@ -414,11 +425,15 @@ isa_undefined
 
 =back
 
+=cut
+
 =head2 -minimal
 
 The minimal export group is exports all functions from the L</-contraints>,
 L</-isas>, and L</-nots> export groups and the functionality provided by the
 L</-attr> tag.
+
+=cut
 
 =head2 -nots
 
@@ -567,6 +582,8 @@ not_undefined
 
 =back
 
+=cut
+
 =head2 -types
 
 The types export group exports all functions which have the C<type_> prefix.
@@ -714,6 +731,8 @@ type_undefined
 
 =back
 
+=cut
+
 =head2 -typesof
 
 The typesof export group exports all functions which have the C<typeof_> prefix.
@@ -860,6 +879,8 @@ typeof_undef
 typeof_undefined
 
 =back
+
+=cut
 
 =head2 -utils
 

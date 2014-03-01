@@ -53,7 +53,7 @@ The atan2 method returns the arctangent of Y/X in the range -PI to PI
 
 sub atan2 {
     my $self = CORE::shift;
-    my $x    = type_num CORE::shift;
+    my $x    = type_number CORE::shift;
     return CORE::atan2 $self, $x;
 }
 
@@ -82,7 +82,7 @@ The decr method returns the numeric subject decremented by 1.
 
 sub decr {
     my $self = CORE::shift;
-    my $n    = type_num CORE::shift if $_[0];
+    my $n    = type_number CORE::shift if $_[0];
     return $self - ($n || 1);
 }
 
@@ -132,7 +132,7 @@ The incr method returns the numeric subject incremented by 1.
 
 sub incr {
     my $self = CORE::shift;
-    my $n    = type_num CORE::shift if $_[0];
+    my $n    = type_number CORE::shift if $_[0];
     return $self + ($n || 1);
 }
 
@@ -181,7 +181,7 @@ argment.
 
 sub mod {
     my $self    = CORE::shift;
-    my $divisor = type_num CORE::shift;
+    my $divisor = type_number CORE::shift;
     return $self % $divisor;
 }
 
@@ -211,7 +211,7 @@ subject to the power of the argument.
 
 sub pow {
     my $self = CORE::shift;
-    my $n    = type_num CORE::shift;
+    my $n    = type_number CORE::shift;
     return $self ** $n;
 }
 
