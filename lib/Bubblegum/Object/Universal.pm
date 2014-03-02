@@ -72,9 +72,10 @@ sub AUTOLOAD {
     my $self  = shift;
     my ($class, $method) = split /::(\w+)$/, our $AUTOLOAD;
 
-    # try method
+    # hypocracy bug
     if ($self->can($method)) {
-        return $self->$method(@_);
+        unshift @_, $self;
+        goto $self->can($method);
     }
 
     # try plugin
