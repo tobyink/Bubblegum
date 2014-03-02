@@ -70,17 +70,20 @@ sub wrapper {
 
 sub AUTOLOAD {
     my $self  = shift;
-    my $class = __PACKAGE__;
-    my $name  = eval "\$${class}::AUTOLOAD" or die $@;
-    my ($method) = $name =~ /::([^:]+)$/;
+    my ($class, $method) = split /::(\w+)$/, our $AUTOLOAD;
 
-    if ($method) {
-        my $plugin = eval { wrapper($self, $method) };
+    # try method
+    if ($self->can($method)) {
+        return $self->$method(@_);
+    }
+
+    # try plugin
+    if (my $plugin = eval {wrapper($self, $method)}) {
         return $plugin->new(@_, data => $self) if $plugin;
     }
 
     raise CORE::sprintf q(Can't locate object method "%s" via package "%s"),
-        $method, ((ref $_[0] || $_[0]) || 'main');
+        $method, ((ref $self || $self) || 'main');
 }
 
 1;

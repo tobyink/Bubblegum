@@ -1,5 +1,6 @@
 package Bubblegum::Class;
 
+use 5.10.0;
 use Moo 'with';
 
 with 'Bubblegum::Role::Configuration';

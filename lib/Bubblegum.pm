@@ -1,6 +1,7 @@
 # ABSTRACT: Opinionated Modern Perl Development Framework
 package Bubblegum;
 
+use 5.10.0;
 use Moo 'with';
 
 with 'Bubblegum::Role::Configuration';
