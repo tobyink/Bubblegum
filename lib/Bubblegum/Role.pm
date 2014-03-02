@@ -29,7 +29,7 @@ sub import {
         return $self->balance($amount);
     }
 
-    sub withdrawl {
+    sub withdrawal {
         my $self = shift;
         my $amount = $self->balance - shift // 0;
         return $self->balance($amount);
@@ -44,7 +44,7 @@ sub import {
 And elsewhere:
 
     my $account = BankAccount->new(balance => 100000);
-    say $account->withdrawl(1500);
+    say $account->withdrawal(1500);
 
 =head1 DESCRIPTION
 

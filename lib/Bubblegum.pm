@@ -25,9 +25,9 @@ sub import {
     has 'firstname';
     has 'lastname';
 
-    sub say_hello {
-        my $self    = type_object shift;
-        my $subject = type_string shift;
+    sub greet {
+        my ($self, $subject) =
+            (type_object shift, type_string shift);
 
         return sprintf 'Hello %s. My name is %s, nice to meet you.',
             $subject->titlecase, $self->firstname->titlecase;
@@ -36,7 +36,7 @@ sub import {
 And elsewhere:
 
     my $jeff = Person->new(firstname => 'jeffrey');
-    say $jeff->say_hello('amanda');
+    say $jeff->greet('amanda');
 
 =head1 DESCRIPTION
 
