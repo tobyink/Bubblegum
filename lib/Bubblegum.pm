@@ -20,7 +20,7 @@ sub import {
     package Person;
 
     use Bubblegum::Class;
-    use Bubblegum::Syntax -types;
+    use Bubblegum::Syntax -typing;
 
     has 'firstname';
     has 'lastname';
