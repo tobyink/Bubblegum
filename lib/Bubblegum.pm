@@ -206,7 +206,7 @@ Enforced consistency is a path many other programming languages and frameworks
 have adopted to great effect, so Bubblegum is one approach towards that end in
 Perl.
 
-=head2 Bubblegum Expressiveness
+=head2 Bubblegum Syntax
 
 Additional features and enhancements can be enabled by using the
 L<Bubblegum::Syntax> module which exports type constraint functions, data
@@ -234,17 +234,16 @@ about pushing Perl boundaries.
     package SpaceShip;
 
     use Bubblegum;
+    use Bubblegum::Syntax -minimal;
+
     use Function::Parameters;
     use Try::Tiny;
 
-    use Bubblegum::Syntax -typing;
-
-    has typeof_string,
-        ['name', 'code'];
+    has _string 'name';
 
     method fire ($times) {
         return $self->name->format('The %s has fired %d times',
-            type_number $times);
+            _number $times);
     }
 
     package main;
