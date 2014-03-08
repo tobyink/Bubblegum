@@ -85,7 +85,7 @@ sub format {
     my $self   = CORE::shift;
     my $format = type_string CORE::shift;
 
-    return CORE::sprintf $format, $self;
+    return CORE::sprintf $format, $self, @_;
 }
 
 =method gt
