@@ -23,7 +23,7 @@ sub import {
 
     use Bubblegum::Class;
 
-    has 'balance' => (
+    has balance => (
         is      => 'rw',
         default => 0
     );

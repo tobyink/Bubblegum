@@ -17,7 +17,7 @@ sub data {
 
 =head1 SYNOPSIS
 
-    Bubblegum::Exception->throw('oh nooo');
+    Bubblegum::Exception->throw('oh nooo!!!');
 
 =head1 DESCRIPTION
 
@@ -32,11 +32,12 @@ catches the exception.
             message => 'you broke something',
             data    => $something
         );
-    } catch ($exception) {
+    }
+    catch ($exception) {
         if ($exception->data->isa('Something')) {
             $exception->rethrow;
         }
-    }
+    };
 
 =cut
 

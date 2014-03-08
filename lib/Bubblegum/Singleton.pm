@@ -36,23 +36,21 @@ sub import {
 
     use Bubblegum::Singleton;
 
-    has 'options' => (
+    has hostname => (
         is      => 'rw',
-        default => sub {{
-            auto_restart => 1
-        }}
+        default => 'localhost'
     );
 
 And elsewhere:
 
     my $config = Configuration->new;
-    $config->options->{auto_restart} = 0;
+    $config->hostname('example.com');
 
     $config = Configuration->new;
-    say $config->options->{auto_restart}; # 0
+    say $config->example; # example.com
 
     $config = $config->renew;
-    say $config->options->{auto_restart}; # 1
+    say $config->hostname; # localhost
 
 =head1 DESCRIPTION
 

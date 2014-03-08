@@ -41,6 +41,11 @@ sub import {
 
     with 'CheckingService';
 
+    has balance => (
+        is      => 'rw',
+        default => 0
+    );
+
 And elsewhere:
 
     my $account = BankAccount->new(balance => 100000);
