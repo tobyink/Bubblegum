@@ -29,8 +29,10 @@ sub import {
         my ($self, $subject) =
             (&_object, &_string);
 
-        return sprintf 'Hello %s. My name is %s, nice to meet you.',
-            $subject->titlecase, $self->firstname->titlecase;
+        return $subject->titlecase->format(
+            'Hello %s. My name is %s, nice to meet you.',
+                $self->firstname->titlecase
+        );
     }
 
 And elsewhere:
@@ -239,7 +241,7 @@ about pushing Perl boundaries.
     use Function::Parameters;
     use Try::Tiny;
 
-    has _string 'name';
+    has _string, 'name';
 
     method fire ($times) {
         return $self->name->format('The %s has fired %d times',
