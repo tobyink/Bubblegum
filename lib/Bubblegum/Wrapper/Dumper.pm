@@ -2,7 +2,6 @@
 package Bubblegum::Wrapper::Dumper;
 
 use Bubblegum::Class;
-
 use Data::Dumper ();
 
 extends 'Bubblegum::Object::Instance';

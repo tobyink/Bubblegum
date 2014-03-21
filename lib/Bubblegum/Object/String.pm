@@ -4,7 +4,7 @@ package Bubblegum::Object::String;
 use Scalar::Util ();
 
 use Bubblegum::Class 'with';
-use Bubblegum::Syntax -types;
+use Bubblegum::Constraints -types;
 
 with 'Bubblegum::Object::Role::Defined';
 with 'Bubblegum::Object::Role::Comparison';

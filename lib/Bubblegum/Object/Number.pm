@@ -2,7 +2,7 @@
 package Bubblegum::Object::Number;
 
 use Bubblegum::Class 'with';
-use Bubblegum::Syntax -types;
+use Bubblegum::Constraints -types;
 
 with 'Bubblegum::Object::Role::Coercive';
 with 'Bubblegum::Object::Role::Value';

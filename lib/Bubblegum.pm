@@ -20,7 +20,7 @@ sub import {
     package Person;
 
     use Bubblegum::Class;
-    use Bubblegum::Syntax -minimal;
+    use Bubblegum::Constraints -minimal;
 
     has 'firstname';
     has 'lastname';
@@ -211,14 +211,14 @@ Perl.
 =head2 Bubblegum Syntax
 
 Additional features and enhancements can be enabled by using the
-L<Bubblegum::Syntax> module which exports type constraint functions, data
+L<Bubblegum::Constraints> module which exports type constraint functions, data
 validation functions and various utility functions. Hardcore Perl hackers around
 the world are working tirelessly around the clock to give us a better system for
 elegantly defining objects and classes using modern Perl best practices, ... but
 in the meantime, have some Bubblegum.
 
     use Bubblegum;
-    use Bubblegum::Syntax 'will';
+    use Bubblegum::Functions 'will';
 
     # take a moment to reason about the following Perl example.
 
@@ -236,7 +236,7 @@ about pushing Perl boundaries.
     package SpaceShip;
 
     use Bubblegum;
-    use Bubblegum::Syntax -minimal;
+    use Bubblegum::Constraints -minimal;
 
     use Function::Parameters;
     use Try::Tiny;

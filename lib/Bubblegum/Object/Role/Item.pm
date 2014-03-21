@@ -1,7 +1,7 @@
 package Bubblegum::Object::Role::Item;
 
 use Bubblegum::Role 'requires';
-use Bubblegum::Syntax -types;
+use Bubblegum::Constraints -types;
 
 # VERSION
 
@@ -9,14 +9,14 @@ requires 'defined';
 
 sub class {
     my $self = CORE::shift;
-    my $map  = $Bubblegum::Syntax::EXTS;
+    my $map  = $Bubblegum::Constraints::EXTS;
     return $map->{type($self)};
 }
 
 sub of {
     my $self = CORE::shift;
     my $type = type_string CORE::shift;
-    my $map  = $Bubblegum::Syntax::EXTS;
+    my $map  = $Bubblegum::Constraints::EXTS;
 
     my $alias = {
         aref  => 'array',

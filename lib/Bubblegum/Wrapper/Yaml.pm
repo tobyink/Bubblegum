@@ -2,8 +2,7 @@
 package Bubblegum::Wrapper::Yaml;
 
 use Bubblegum::Class;
-
-use YAML::Tiny ();
+use Class::Load 'load_class';
 
 extends 'Bubblegum::Object::Instance';
 
@@ -22,7 +21,9 @@ extends 'Bubblegum::Object::Instance';
 
 L<Bubblegum::Wrapper::Yaml> is a Bubblegum wrapper which provides the ability to
 endcode/decode YAML data structures. It is not necessary to use this module as
-it is loaded automatically by the L<Bubblegum> class.
+it is loaded automatically by the L<Bubblegum> class. B<Note>, in order to use
+this wrapper you will need to have L<YAML::Tiny> installed which is not a
+required Bubblegum dependency and should have been installed separately.
 
 =cut
 
@@ -35,7 +36,7 @@ L<YAML::Tiny> module.
 
 sub decode {
     my $self = shift;
-    my $yaml = YAML::Tiny->new;
+    my $yaml = load_class('YAML::Tiny', -version => 1.56)->new;
     return $yaml->read_string($self->data);
 }
 
@@ -48,7 +49,7 @@ module.
 
 sub encode {
     my $self = shift;
-    my $yaml = YAML::Tiny->new;
+    my $yaml = load_class('YAML::Tiny', -version => 1.56)->new;
 
     $yaml->[0] = $self->data; # hack
     return $yaml->write_string($self->data);

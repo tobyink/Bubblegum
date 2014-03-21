@@ -1,7 +1,7 @@
 package Bubblegum::Object::Float;
 
 use Bubblegum::Class 'with';
-use Bubblegum::Syntax -types;
+use Bubblegum::Constraints -types;
 
 with 'Bubblegum::Object::Role::Value';
 

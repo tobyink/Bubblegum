@@ -2,8 +2,8 @@
 package Bubblegum::Wrapper::Encoder;
 
 use Bubblegum::Class;
+use Bubblegum::Exception;
 
-use Bubblegum::Syntax 'raise';
 use Encode 'find_encoding';
 
 extends 'Bubblegum::Object::Instance';
@@ -27,9 +27,10 @@ this module as it is loaded automatically by the L<Bubblegum> class.
 
 sub BUILD {
     my $self = shift;
-
-    $self->data->typeof('str') or raise
-        CORE::sprintf q(Wrapper package "%s" requires string data), ref $self;
+    $self->data->typeof('str')
+        or Bubblegum::Exception->throw(
+            ref($self)->format('Wrapper package "%s" requires string data')
+        );
 }
 
 =method decode

@@ -1,7 +1,7 @@
 package Bubblegum::Object::Role::Ref;
 
 use Bubblegum::Role 'with';
-use Bubblegum::Syntax -types;
+use Bubblegum::Constraints -types;
 
 use Scalar::Util ();
 

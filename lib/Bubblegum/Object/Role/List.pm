@@ -1,7 +1,7 @@
 package Bubblegum::Object::Role::List;
 
 use Bubblegum::Role 'requires', 'with';
-use Bubblegum::Syntax -types;
+use Bubblegum::Constraints -types;
 
 with 'Bubblegum::Object::Role::Value';
 

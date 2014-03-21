@@ -6,7 +6,7 @@ use Bubblegum::Class;
 use Digest::MD5 ();
 use Digest::SHA ();
 
-use Bubblegum::Syntax 'raise';
+use Bubblegum::Exception;
 
 extends 'Bubblegum::Object::Instance';
 
@@ -29,9 +29,10 @@ this module as it is loaded automatically by the L<Bubblegum> class.
 
 sub BUILD {
     my $self = shift;
-
-    $self->data->typeof('str') or raise
-        CORE::sprintf q(Wrapper package "%s" requires string data), ref $self;
+    $self->data->typeof('str')
+        or Bubblegum::Exception->throw(
+            ref($self)->format('Wrapper package "%s" requires string data')
+        );
 }
 
 =method encode
