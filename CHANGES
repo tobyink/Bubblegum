@@ -1,5 +1,9 @@
 Changelog for Bubblegum
 
+0.20 2014-03-21T17:49:00
+ - Trimmed dependencies and broke Bubblegum::Syntax out into a separate
+   dist.
+
 0.19 2014-03-11T23:09:56
  - v0.19
    
