@@ -1,6 +1,7 @@
 Changelog for Bubblegum
 
-0.21 2014-03-26T11:10:40
+0.21 2014-03-26T11:12:36
+ - Updated Makefile and README.
  - Miscellaneous cleanup and fixed missing dependency.
 
 0.20 2014-03-21T17:49:18
