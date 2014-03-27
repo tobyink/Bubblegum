@@ -1,6 +1,14 @@
 Changelog for Bubblegum
 
-0.21 2014-03-26T11:12:36
+0.22 2014-03-27T21:50:40
+ - Various refactoring of POD and functions.
+ - Allow Bubblegum::Constraints -attr to deduce a builder.
+
+0.21 2014-03-26T11:12:51
+ - v0.21
+   
+    - Updated Makefile and README.
+    - Miscellaneous cleanup and fixed missing dependency.
  - Updated Makefile and README.
  - Miscellaneous cleanup and fixed missing dependency.
 
