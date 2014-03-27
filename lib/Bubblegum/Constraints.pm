@@ -205,8 +205,6 @@ sub _handle_typing {
 Bubblegum::Constraints is the standard type-checking library for L<Bubblegum>
 applications with a focus on minimalism and data integrity.
 
-=head1 EXPORTS
-
 By default, no functions are exported when using this package, all functionality
 desired will need to be explicitly requested, and because many functions belong
 to a particular group of functions there are export tags which can be used to
