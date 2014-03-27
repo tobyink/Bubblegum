@@ -10,6 +10,89 @@ with 'Bubblegum::Object::Role::Value';
 
 # VERSION
 
+sub downto {
+    my $self = CORE::shift;
+    my $other = type_number CORE::shift;
+
+    return [CORE::reverse $other..$self];
+}
+
+sub eq {
+    my $self  = CORE::shift;
+    my $other = type_number CORE::shift;
+
+    return $self == $other ? 1 : 0;
+}
+
+sub eqtv {
+    my $self  = CORE::shift;
+    my $other = CORE::shift;
+
+    return 0 if !CORE::defined $other;
+    return ($self->type eq $other->type && $self == $other) ? 1 : 0;
+}
+
+sub format {
+    my $self   = CORE::shift;
+    my $format = type_string CORE::shift;
+
+    return CORE::sprintf $format, $self;
+}
+
+sub gt {
+    my $self  = CORE::shift;
+    my $other = type_number CORE::shift;
+
+    return $self > $other ? 1 : 0;
+}
+
+sub gte {
+    my $self  = CORE::shift;
+    my $other = type_number CORE::shift;
+
+    return $self >= $other ? 1 : 0;
+}
+
+sub lt {
+    my $self  = CORE::shift;
+    my $other = type_number CORE::shift;
+
+    return $self < $other ? 1 : 0;
+}
+
+sub lte {
+    my $self  = CORE::shift;
+    my $other = type_number CORE::shift;
+
+    return $self <= $other ? 1 : 0;
+}
+
+sub ne {
+    my $self  = CORE::shift;
+    my $other = type_number CORE::shift;
+
+    return $self != $other ? 1 : 0;
+}
+
+sub to {
+    my $self  = CORE::shift;
+    my $range = type_number CORE::shift;
+
+    return [$self..$range] if $self <= $range;
+    return [CORE::reverse($range..$self)];
+}
+
+sub upto {
+    my $self = CORE::shift;
+    my $other = type_number CORE::shift;
+
+    return [$self..$other];
+}
+
+1;
+
+=encoding utf8
+
 =head1 SYNOPSIS
 
     use Bubblegum;
@@ -27,8 +110,6 @@ Unless stated, it may be safe to assume that the following methods copy, modify
 and return new integers based on their subjects. It is not necessary to use this
 module as it is loaded automatically by the L<Bubblegum> class.
 
-=cut
-
 =method downto
 
     my $int = 10;
@@ -37,15 +118,6 @@ module as it is loaded automatically by the L<Bubblegum> class.
 The downto method returns an array reference containing a range of integers
 from the subject to the argument. Assumes the subject is greater than the
 argument.
-
-=cut
-
-sub downto {
-    my $self = CORE::shift;
-    my $other = type_number CORE::shift;
-
-    return [CORE::reverse $other..$self];
-}
 
 =method eq
 
@@ -57,15 +129,6 @@ sub downto {
 The eq method returns true if the argument matches the subject, otherwise
 returns false.
 
-=cut
-
-sub eq {
-    my $self  = CORE::shift;
-    my $other = type_number CORE::shift;
-
-    return $self == $other ? 1 : 0;
-}
-
 =method eqtv
 
     my $int = 123;
@@ -76,16 +139,6 @@ The eqtv method returns true if the argument matches the subject's type and
 value, otherwise returns false. This function is akin to the strict-comparison
 operator in other languages.
 
-=cut
-
-sub eqtv {
-    my $self  = CORE::shift;
-    my $other = CORE::shift;
-
-    return 0 if !CORE::defined $other;
-    return ($self->type eq $other->type && $self == $other) ? 1 : 0;
-}
-
 =method format
 
     my $int = 500;
@@ -94,15 +147,6 @@ sub eqtv {
 The format method returns an integer formatted using the argument as a template
 and the subject as a variable using the same conventions as the 'sprintf'
 function.
-
-=cut
-
-sub format {
-    my $self   = CORE::shift;
-    my $format = type_string CORE::shift;
-
-    return CORE::sprintf $format, $self;
-}
 
 =method gt
 
@@ -113,15 +157,6 @@ sub format {
 The gt method performs binary "greater than" and returns true if the subject is
 numerically greater than the argument. Note, this operation expects the argument
 to be numeric.
-
-=cut
-
-sub gt {
-    my $self  = CORE::shift;
-    my $other = type_number CORE::shift;
-
-    return $self > $other ? 1 : 0;
-}
 
 =method gte
 
@@ -134,15 +169,6 @@ The gte method performs binary "greater than or equal to" and returns true if
 the subject is numerically greater than or equal to the argument. Note, this
 operation expects the argument to be numeric.
 
-=cut
-
-sub gte {
-    my $self  = CORE::shift;
-    my $other = type_number CORE::shift;
-
-    return $self >= $other ? 1 : 0;
-}
-
 =method lt
 
     my $int = 1;
@@ -152,15 +178,6 @@ sub gte {
 The lt method performs binary "less than" and returns true if the subject is
 numerically less than the argument. Note, this operation expects the argument to
 be numeric.
-
-=cut
-
-sub lt {
-    my $self  = CORE::shift;
-    my $other = type_number CORE::shift;
-
-    return $self < $other ? 1 : 0;
-}
 
 =method lte
 
@@ -173,15 +190,6 @@ The lte method performs binary "less than or equal to" and returns true if
 the subject is numerically less than or equal to the argument. Note, this
 operation expects the argument to be numeric.
 
-=cut
-
-sub lte {
-    my $self  = CORE::shift;
-    my $other = type_number CORE::shift;
-
-    return $self <= $other ? 1 : 0;
-}
-
 =method ne
 
     my $int = 1;
@@ -190,15 +198,6 @@ sub lte {
 
 The ne method returns true if the argument does not match the subject, otherwise
 returns false.
-
-=cut
-
-sub ne {
-    my $self  = CORE::shift;
-    my $other = type_number CORE::shift;
-
-    return $self != $other ? 1 : 0;
-}
 
 =method to
 
@@ -211,16 +210,6 @@ subject to the argument. If the subject is greater than the argument, the range
 generated will be from greastest to least, however, if the subject is less than
 the argument, the range generated will be from least to greatest.
 
-=cut
-
-sub to {
-    my $self  = CORE::shift;
-    my $range = type_number CORE::shift;
-
-    return [$self..$range] if $self <= $range;
-    return [CORE::reverse($range..$self)];
-}
-
 =method upto
 
     my $int = 0;
@@ -231,12 +220,3 @@ from the subject to the argument. Assumes the subject is lesser than the
 argument.
 
 =cut
-
-sub upto {
-    my $self = CORE::shift;
-    my $other = type_number CORE::shift;
-
-    return [$self..$other];
-}
-
-1;

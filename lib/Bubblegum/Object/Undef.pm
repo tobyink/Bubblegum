@@ -7,6 +7,14 @@ with 'Bubblegum::Object::Role::Item';
 
 # VERSION
 
+sub defined {
+    return 0
+}
+
+1;
+
+=encoding utf8
+
 =head1 SYNOPSIS
 
     use Bubblegum;
@@ -30,9 +38,3 @@ by the L<Bubblegum> class.
 The defined method always returns false.
 
 =cut
-
-sub defined {
-    return 0
-}
-
-1;

@@ -9,6 +9,51 @@ with 'Bubblegum::Object::Role::Ref';
 
 # VERSION
 
+sub call {
+    my $self = CORE::shift;
+    my @args = @_;
+    return $self->(@args);
+}
+
+sub curry {
+    my $self = CORE::shift;
+    my @args = @_;
+    return sub { $self->(@args, @_) };
+}
+
+sub rcurry {
+    my $self = CORE::shift;
+    my @args = @_;
+    return sub { $self->(@_, @args) };
+}
+
+sub compose {
+    my $self = CORE::shift;
+    my $next = type_coderef CORE::shift;
+    my @args = @_;
+    return (sub { $next->($self->(@_)) })->curry(@args);
+}
+
+sub disjoin {
+    my $self = CORE::shift;
+    my $next = type_coderef CORE::shift;
+    return sub { $self->(@_) || $next->(@_) };
+}
+
+sub conjoin {
+    my $self = CORE::shift;
+    my $next = type_coderef CORE::shift;
+    return sub { $self->(@_) && $next->(@_) };
+}
+
+sub next {
+    goto &call;
+}
+
+1;
+
+=encoding utf8
+
 =head1 SYNOPSIS
 
     use Bubblegum;
@@ -21,8 +66,6 @@ with 'Bubblegum::Object::Role::Ref';
 Code methods work on code references. It is not necessary to use this module as
 it is loaded automatically by the L<Bubblegum> class.
 
-=cut
-
 =method call
 
     my $code = sub { (shift // 0) + 1 };
@@ -33,14 +76,6 @@ it is loaded automatically by the L<Bubblegum> class.
 
 The call method executes and returns the result of the subject.
 
-=cut
-
-sub call {
-    my $self = CORE::shift;
-    my @args = @_;
-    return $self->(@args);
-}
-
 =method curry
 
     my $code = sub { [@_] };
@@ -50,14 +85,6 @@ sub call {
 The curry method returns a code reference which executes the subject passing it
 the arguments and any additional parameters when executed.
 
-=cut
-
-sub curry {
-    my $self = CORE::shift;
-    my @args = @_;
-    return sub { $self->(@args, @_) };
-}
-
 =method rcurry
 
     my $code = sub { [@_] };
@@ -66,14 +93,6 @@ sub curry {
 
 The rcurry method returns a code reference which executes the subject passing it
 the any additional parameters and any arguments when executed.
-
-=cut
-
-sub rcurry {
-    my $self = CORE::shift;
-    my @args = @_;
-    return sub { $self->(@_, @args) };
-}
 
 =method compose
 
@@ -91,15 +110,6 @@ The compose method creates a code reference which executes the first argument
 argument, and returns a code reference which executes the created code reference
 passing it the remaining arguments when executed.
 
-=cut
-
-sub compose {
-    my $self = CORE::shift;
-    my $next = type_coderef CORE::shift;
-    my @args = @_;
-    return (sub { $next->($self->(@_)) })->curry(@args);
-}
-
 =method disjoin
 
     my $code = sub { $_[0] % 2 };
@@ -113,14 +123,6 @@ sub compose {
 The disjoin method creates a code reference which execute the subject and the
 argument in a logical OR operation having the subject as the lvalue and the
 argument as the rvalue.
-
-=cut
-
-sub disjoin {
-    my $self = CORE::shift;
-    my $next = type_coderef CORE::shift;
-    return sub { $self->(@_) || $next->(@_) };
-}
 
 =method conjoin
 
@@ -136,14 +138,6 @@ The conjoin method creates a code reference which execute the subject and the
 argument in a logical AND operation having the subject as the lvalue and the
 argument as the rvalue.
 
-=cut
-
-sub conjoin {
-    my $self = CORE::shift;
-    my $next = type_coderef CORE::shift;
-    return sub { $self->(@_) && $next->(@_) };
-}
-
 =method next
 
     $code->next;
@@ -152,9 +146,3 @@ The next method is an alias to the call method. The naming is especially useful
 (i.e. helps with readability) when used with closure-based iterators.
 
 =cut
-
-sub next {
-    goto &call;
-}
-
-1;

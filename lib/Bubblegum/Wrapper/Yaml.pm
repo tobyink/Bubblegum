@@ -8,6 +8,24 @@ extends 'Bubblegum::Object::Instance';
 
 # VERSION
 
+sub decode {
+    my $self = shift;
+    my $yaml = load_class('YAML::Tiny', -version => 1.56)->new;
+    return $yaml->read_string($self->data);
+}
+
+sub encode {
+    my $self = shift;
+    my $yaml = load_class('YAML::Tiny', -version => 1.56)->new;
+
+    $yaml->[0] = $self->data; # hack
+    return $yaml->write_string($self->data);
+}
+
+1;
+
+=encoding utf8
+
 =head1 SYNOPSIS
 
     use Bubblegum;
@@ -25,20 +43,10 @@ it is loaded automatically by the L<Bubblegum> class. B<Note>, in order to use
 this wrapper you will need to have L<YAML::Tiny> installed which is not a
 required Bubblegum dependency and should have been installed separately.
 
-=cut
-
 =method decode
 
 The decode method deserializes the stringified YAML structure using the
 L<YAML::Tiny> module.
-
-=cut
-
-sub decode {
-    my $self = shift;
-    my $yaml = load_class('YAML::Tiny', -version => 1.56)->new;
-    return $yaml->read_string($self->data);
-}
 
 =method encode
 
@@ -46,13 +54,3 @@ The encode method serializes the Perl data structure using the L<YAML::Tiny>
 module.
 
 =cut
-
-sub encode {
-    my $self = shift;
-    my $yaml = load_class('YAML::Tiny', -version => 1.56)->new;
-
-    $yaml->[0] = $self->data; # hack
-    return $yaml->write_string($self->data);
-}
-
-1;

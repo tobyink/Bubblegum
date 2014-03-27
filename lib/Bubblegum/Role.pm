@@ -17,6 +17,10 @@ sub import {
     Moo::Role->import::into($target, @export);
 }
 
+1;
+
+=encoding utf8
+
 =head1 SYNOPSIS
 
     package CheckingService;
@@ -74,5 +78,3 @@ is equivalent to
     use Moo::Role;
 
 =cut
-
-1;

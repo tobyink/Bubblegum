@@ -7,6 +7,6 @@ with 'Bubblegum::Object::Role::Value';
 
 # VERSION
 
-# needs formatting routines ... not implemented
+# needs formatting routines ... not implemented yet
 
 1;

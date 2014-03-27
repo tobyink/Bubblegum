@@ -13,6 +13,218 @@ with 'Bubblegum::Object::Role::Value';
 
 # VERSION
 
+sub eq {
+    my $self  = CORE::shift;
+    my $other = type_string CORE::shift;
+
+    return $self eq $other ? 1 : 0;
+}
+
+sub eqtv {
+    my $self  = CORE::shift;
+    my $other = CORE::shift;
+
+    return 0 unless CORE::defined $other;
+    return ($self->type eq $other->type && $self eq $other) ? 1 : 0;
+}
+
+sub format {
+    my $self   = CORE::shift;
+    my $format = type_string CORE::shift;
+
+    return CORE::sprintf $format, $self, @_;
+}
+
+sub gt {
+    my $self  = CORE::shift;
+    my $other = type_string CORE::shift;
+
+    return $self gt $other ? 1 : 0;
+}
+
+sub gte {
+    my $self  = CORE::shift;
+    my $other = type_string CORE::shift;
+
+    return $self ge $other ? 1 : 0;
+}
+
+sub lt {
+    my $self  = CORE::shift;
+    my $other = type_string CORE::shift;
+
+    return $self lt $other ? 1 : 0;
+}
+
+sub lte {
+    my $self  = CORE::shift;
+    my $other = type_string CORE::shift;
+
+    return $self le $other ? 1 : 0;
+}
+
+sub ne {
+    my $self  = CORE::shift;
+    my $other = type_string CORE::shift;
+
+    return $self ne $other ? 1 : 0;
+}
+
+sub camelcase {
+    my $self = CORE::shift;
+    $self = CORE::ucfirst(CORE::lc("$self"));
+    $self =~ s/[^a-zA-Z0-9]+([a-z])/\U$1/g;
+    $self =~ s/[^a-zA-Z0-9]+//g;
+    return $self;
+}
+
+sub chomp {
+    my $self = CORE::shift;
+    CORE::chomp $self;
+    return $self;
+}
+
+sub chop {
+    my $self = CORE::shift;
+    CORE::chop $self;
+    return $self;
+}
+
+sub hex {
+    my $self = CORE::shift;
+    return CORE::hex $self;
+}
+
+sub index {
+    my ($self, $substr, $pos) = @_;
+    type_string $substr;
+    return CORE::index $self, $substr if scalar @_ == 2;
+
+    type_number $pos;
+    return CORE::index $self, $substr, $pos
+}
+
+sub lc {
+    my $self = CORE::shift;
+    return CORE::lc $self;
+}
+
+sub lcfirst {
+    my $self = CORE::shift;
+    return CORE::lcfirst $self;
+}
+
+sub length {
+    my $self = CORE::shift;
+    return CORE::length $self;
+}
+
+sub lines {
+    my $self = CORE::shift;
+    return [CORE::split /\n+/, $self];
+}
+
+sub lowercase {
+    goto &lc
+}
+
+sub reverse {
+    my $self = CORE::shift;
+    return CORE::reverse $self;
+}
+
+sub rindex {
+    my ($self, $substr, $pos) = @_;
+    type_string $substr;
+    return CORE::rindex $self, $substr if !defined $pos;
+
+    type_number $pos;
+    return CORE::rindex $self, $substr, $pos;
+}
+
+sub snakecase {
+    my $self = CORE::shift;
+    $self = CORE::lc("$self");
+    $self =~ s/[^a-zA-Z0-9]+([a-z])/\U$1/g;
+    $self =~ s/[^a-zA-Z0-9]+//g;
+    return $self;
+}
+
+sub split {
+    my ($self, $regexp, $limit) = @_;
+    type_regexpref $regexp;
+    return [CORE::split /$regexp/, $self] if !defined $limit;
+
+    type_number $limit;
+    return [CORE::split /$regexp/, $self, $limit];
+}
+
+sub strip {
+    my $self = CORE::shift;
+    $self =~ s/\s{2,}/ /g;
+    return $self;
+}
+
+sub titlecase {
+    my $self = CORE::shift;
+    $self =~ s/\b(\w)/\U$1/g;
+    return $self;
+}
+
+sub to_array {
+    my $self = CORE::shift;
+    return ["$self"];
+}
+
+sub to_code {
+    my $self = CORE::shift;
+    return sub {"$self"};
+}
+
+sub to_hash {
+    my $self = CORE::shift;
+    return {"$self"=>"$self"};
+}
+
+sub to_integer {
+    my $self = CORE::shift;
+    return Scalar::Util::looks_like_number($self) ? 0 + $self : 0;
+}
+
+sub to_string {
+    my $self = CORE::shift;
+    return $self;
+}
+
+sub trim {
+    my $self = CORE::shift;
+    $self =~ s/^\s+|\s+$//g;
+    return $self;
+}
+
+sub uc {
+    my $self = CORE::shift;
+    return CORE::uc $self;
+}
+
+sub ucfirst {
+    my $self = CORE::shift;
+    return CORE::ucfirst $self;
+}
+
+sub uppercase {
+    goto &uc;
+}
+
+sub words {
+    my $self = CORE::shift;
+    return [CORE::split /\s+/, $self];
+}
+
+1;
+
+=encoding utf8
+
 =head1 SYNOPSIS
 
     use Bubblegum;
@@ -30,8 +242,6 @@ safe to assume that the following methods copy, modify and return new strings
 based on their subjects. It is not necessary to use this module as it is loaded
 automatically by the L<Bubblegum> class.
 
-=cut
-
 =method eq
 
     my $string = 'User';
@@ -40,15 +250,6 @@ automatically by the L<Bubblegum> class.
 
 The eq method returns true if the argument matches the subject, otherwise
 returns false. Equality is case-sensative.
-
-=cut
-
-sub eq {
-    my $self  = CORE::shift;
-    my $other = type_string CORE::shift;
-
-    return $self eq $other ? 1 : 0;
-}
 
 =method eqtv
 
@@ -60,16 +261,6 @@ The eqtv method returns true if the argument matches the subject's type and
 value, otherwise returns false. This function is akin to the strict-comparison
 operator in other languages.
 
-=cut
-
-sub eqtv {
-    my $self  = CORE::shift;
-    my $other = CORE::shift;
-
-    return 0 unless CORE::defined $other;
-    return ($self->type eq $other->type && $self eq $other) ? 1 : 0;
-}
-
 =method format
 
     my $string = 'bobama';
@@ -78,15 +269,6 @@ sub eqtv {
 The format method returns a string formatted using the argument as a template
 and the subject as a variable using the same conventions as the 'sprintf'
 function.
-
-=cut
-
-sub format {
-    my $self   = CORE::shift;
-    my $format = type_string CORE::shift;
-
-    return CORE::sprintf $format, $self, @_;
-}
 
 =method gt
 
@@ -97,15 +279,6 @@ sub format {
 The gt method performs binary "greater than" and returns true if the subject is
 stringwise greater than the argument. Note, this operation expects the argument
 to be a string.
-
-=cut
-
-sub gt {
-    my $self  = CORE::shift;
-    my $other = type_string CORE::shift;
-
-    return $self gt $other ? 1 : 0;
-}
 
 =method gte
 
@@ -118,15 +291,6 @@ The gte method performs binary "greater than or equal to" and returns true if
 the subject is stringwise greater than or equal to the argument. Note, this
 operation expects the argument to be a string.
 
-=cut
-
-sub gte {
-    my $self  = CORE::shift;
-    my $other = type_string CORE::shift;
-
-    return $self ge $other ? 1 : 0;
-}
-
 =method lt
 
     my $string = 'ABC';
@@ -136,15 +300,6 @@ sub gte {
 The lt method performs binary "less than" and returns true if the subject is
 stringwise less than the argument. Note, this operation expects the argument to
 be a string.
-
-=cut
-
-sub lt {
-    my $self  = CORE::shift;
-    my $other = type_string CORE::shift;
-
-    return $self lt $other ? 1 : 0;
-}
 
 =method lte
 
@@ -157,15 +312,6 @@ The lte method performs binary "less than or equal to" and returns true if
 the subject is stringwise less than or equal to the argument. Note, this
 operation expects the argument to be a string.
 
-=cut
-
-sub lte {
-    my $self  = CORE::shift;
-    my $other = type_string CORE::shift;
-
-    return $self le $other ? 1 : 0;
-}
-
 =method ne
 
     my $string = 'User';
@@ -174,15 +320,6 @@ sub lte {
 
 The ne method returns true if the argument does not match the subject, otherwise
 returns false. Equality is case-sensative.
-
-=cut
-
-sub ne {
-    my $self  = CORE::shift;
-    my $other = type_string CORE::shift;
-
-    return $self ne $other ? 1 : 0;
-}
 
 =method camelcase
 
@@ -194,16 +331,6 @@ non-alphanumeric characters and each word (group of alphanumeric characters
 separated by 1 or more non-alphanumeric characters) is capitalized. Note, this
 method modifies the subject.
 
-=cut
-
-sub camelcase {
-    my $self = CORE::shift;
-    $self = CORE::ucfirst(CORE::lc("$self"));
-    $self =~ s/[^a-zA-Z0-9]+([a-z])/\U$1/g;
-    $self =~ s/[^a-zA-Z0-9]+//g;
-    return $self;
-}
-
 =method chomp
 
     my $string = "name, age, dob, email\n";
@@ -212,14 +339,6 @@ sub camelcase {
 The chomp method is a safer version of the chop method, it's used to remove the
 newline (or the current value of $/) from the end of the subject. Note, this
 method modifies and returns the subject.
-
-=cut
-
-sub chomp {
-    my $self = CORE::shift;
-    CORE::chomp $self;
-    return $self;
-}
 
 =method chop
 
@@ -230,14 +349,6 @@ The chop method removes the last character of a string and returns the character
 chopped. It is much more efficient than "s/.$//s" because it neither scans nor
 copies the string. Note, this method modifies and returns the subject.
 
-=cut
-
-sub chop {
-    my $self = CORE::shift;
-    CORE::chop $self;
-    return $self;
-}
-
 =method hex
 
     my $string = '0xaf';
@@ -245,13 +356,6 @@ sub chop {
 
 The hex method returns the value resulting from interpreting the subject as a
 hex string.
-
-=cut
-
-sub hex {
-    my $self = CORE::shift;
-    return CORE::hex $self;
-}
 
 =method index
 
@@ -269,30 +373,12 @@ second argument which would be the position within the subject to start
 searching from (also known as the base). By default, starts searching from the
 beginning of the string.
 
-=cut
-
-sub index {
-    my ($self, $substr, $pos) = @_;
-    type_string $substr;
-    return CORE::index $self, $substr if scalar @_ == 2;
-
-    type_number $pos;
-    return CORE::index $self, $substr, $pos
-}
-
 =method lc
 
     my $string = 'EXCITING';
     $string->lc; # exciting
 
 The lc method returns a lowercased version of the subject.
-
-=cut
-
-sub lc {
-    my $self = CORE::shift;
-    return CORE::lc $self;
-}
 
 =method lcfirst
 
@@ -301,26 +387,12 @@ sub lc {
 
 The lcfirst method returns a the subject with the first character lowercased.
 
-=cut
-
-sub lcfirst {
-    my $self = CORE::shift;
-    return CORE::lcfirst $self;
-}
-
 =method length
 
     my $string = 'longggggg';
     $string->length; # 9
 
 The length method returns the number of characters within the subject.
-
-=cut
-
-sub length {
-    my $self = CORE::shift;
-    return CORE::length $self;
-}
 
 =method lines
 
@@ -329,25 +401,12 @@ sub length {
 
 The lines method breaks the subject into pieces, split on 1 or more newline characters, and returns an array reference consisting of the pieces.
 
-=cut
-
-sub lines {
-    my $self = CORE::shift;
-    return [CORE::split /\n+/, $self];
-}
-
 =method lowercase
 
     my $string = 'EXCITING';
     $string->lowercase; # exciting
 
 The lowercase method is an alias to the lc method.
-
-=cut
-
-sub lowercase {
-    goto &lc
-}
 
 =method reverse
 
@@ -356,13 +415,6 @@ sub lowercase {
 
 The reverse method returns a string where the characters in the subject are in
 the opposite order.
-
-=cut
-
-sub reverse {
-    my $self = CORE::shift;
-    return CORE::reverse $self;
-}
 
 =method rindex
 
@@ -384,17 +436,6 @@ second argument which would be the position within the subject to start
 searching from (beginning at or before the position). By default, starts
 searching from the end of the string.
 
-=cut
-
-sub rindex {
-    my ($self, $substr, $pos) = @_;
-    type_string $substr;
-    return CORE::rindex $self, $substr if !defined $pos;
-
-    type_number $pos;
-    return CORE::rindex $self, $substr, $pos;
-}
-
 =method snakecase
 
     my $string = 'hello world';
@@ -406,16 +447,6 @@ separated by 1 or more non-alphanumeric characters) is capitalized. The only
 difference between this method and the camelcase method is that this method
 ensures that the first character will always be lowercased. Note, this method
 modifies the subject.
-
-=cut
-
-sub snakecase {
-    my $self = CORE::shift;
-    $self = CORE::lc("$self");
-    $self =~ s/[^a-zA-Z0-9]+([a-z])/\U$1/g;
-    $self =~ s/[^a-zA-Z0-9]+//g;
-    return $self;
-}
 
 =method split
 
@@ -429,17 +460,6 @@ reference. This method optionally takes a second argument which would be the
 limit (number of matches to capture). Note, this operation expects the 1st
 argument to be a Regexp object.
 
-=cut
-
-sub split {
-    my ($self, $regexp, $limit) = @_;
-    type_regexpref $regexp;
-    return [CORE::split /$regexp/, $self] if !defined $limit;
-
-    type_number $limit;
-    return [CORE::split /$regexp/, $self, $limit];
-}
-
 =method strip
 
     my $string = 'one,  two,  three';
@@ -447,14 +467,6 @@ sub split {
 
 The strip method returns the subject replacing occurences of 2 or more
 whitespaces with a single whitespace. Note, this method modifies the subject.
-
-=cut
-
-sub strip {
-    my $self = CORE::shift;
-    $self =~ s/\s{2,}/ /g;
-    return $self;
-}
 
 =method titlecase
 
@@ -465,14 +477,6 @@ The titlecase method returns the subject capitalizing the first character of
 each word (group of alphanumeric characters separated by 1 or more whitespaces).
 Note, this method modifies the subject.
 
-=cut
-
-sub titlecase {
-    my $self = CORE::shift;
-    $self =~ s/\b(\w)/\U$1/g;
-    return $self;
-}
-
 =method to_array
 
     my $string = 'uniform';
@@ -480,13 +484,6 @@ sub titlecase {
 
 The to_array method is used for coercion and simply returns an array reference
 where the first element contains the subject.
-
-=cut
-
-sub to_array {
-    my $self = CORE::shift;
-    return ["$self"];
-}
 
 =method to_code
 
@@ -496,13 +493,6 @@ sub to_array {
 The to_code method is used for coercion and simply returns a code reference
 which always returns the subject when called.
 
-=cut
-
-sub to_code {
-    my $self = CORE::shift;
-    return sub {"$self"};
-}
-
 =method to_hash
 
     my $string = 'uniform';
@@ -510,13 +500,6 @@ sub to_code {
 
 The to_hash method is used for coercion and simply returns a hash reference
 with a single key and value, having the key and value both contain the subject.
-
-=cut
-
-sub to_hash {
-    my $self = CORE::shift;
-    return {"$self"=>"$self"};
-}
 
 =method to_integer
 
@@ -530,26 +513,12 @@ The to_integer method is used for coercion and simply returns the numeric
 version of the subject based on whether the subject "looks like a number", if
 not, returns 0.
 
-=cut
-
-sub to_integer {
-    my $self = CORE::shift;
-    return Scalar::Util::looks_like_number($self) ? 0 + $self : 0;
-}
-
 =method to_string
 
     my $string = 'uniform';
     $string->to_string; # uniform
 
 The to_string method is used for coercion and simply returns the subject.
-
-=cut
-
-sub to_string {
-    my $self = CORE::shift;
-    return $self;
-}
 
 =method trim
 
@@ -559,27 +528,12 @@ sub to_string {
 The trim method removes 1 or more consecutive leading and/or trailing spaces
 from the subject. Note, this method modifies the subject.
 
-=cut
-
-sub trim {
-    my $self = CORE::shift;
-    $self =~ s/^\s+|\s+$//g;
-    return $self;
-}
-
 =method uc
 
     my $string = 'exciting';
     $string->uc; # EXCITING
 
 The uc method returns an uppercased version of the subject.
-
-=cut
-
-sub uc {
-    my $self = CORE::shift;
-    return CORE::uc $self;
-}
 
 =method ucfirst
 
@@ -588,25 +542,12 @@ sub uc {
 
 The ucfirst method returns a the subject with the first character uppercased.
 
-=cut
-
-sub ucfirst {
-    my $self = CORE::shift;
-    return CORE::ucfirst $self;
-}
-
 =method uppercase
 
     my $string = 'exciting';
     $string->uppercase; # EXCITING
 
 The uppercase method is an alias to the uc method.
-
-=cut
-
-sub uppercase {
-    goto &uc;
-}
 
 =method words
 
@@ -618,10 +559,3 @@ group of characters by 1 or more consecutive spaces, and returns that list as an
 array reference.
 
 =cut
-
-sub words {
-    my $self = CORE::shift;
-    return [CORE::split /\s+/, $self];
-}
-
-1;

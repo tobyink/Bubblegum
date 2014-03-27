@@ -30,6 +30,10 @@ sub import {
     }
 }
 
+1;
+
+=encoding utf8
+
 =head1 SYNOPSIS
 
     package Configuration;
@@ -75,5 +79,3 @@ is equivalent to
     use Moo;
 
 =cut
-
-1;

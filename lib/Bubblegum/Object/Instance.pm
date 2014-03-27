@@ -5,6 +5,14 @@ use Bubblegum::Class;
 
 # VERSION
 
+has 'data' => (
+    is => 'ro'
+);
+
+1;
+
+=encoding utf8
+
 =head1 SYNOPSIS
 
     use Bubblegum::Object::Instance;
@@ -19,8 +27,6 @@ consistent interface for accessing and operating on various data structures. It
 is not necessary to use this module as it is loaded automatically by the
 L<Bubblegum> class.
 
-=cut
-
 =attr data
 
     $self->data(...);
@@ -28,9 +34,3 @@ L<Bubblegum> class.
 The data attribute holds some arbitrary value to be operated on.
 
 =cut
-
-has 'data' => (
-    is => 'ro'
-);
-
-1;

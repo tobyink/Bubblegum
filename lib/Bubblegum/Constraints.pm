@@ -7,7 +7,6 @@ use strict;
 use utf8::all;
 use warnings;
 
-use Bubblegum::Exception;
 use Try::Tiny;
 
 use Type::Params ();
@@ -16,24 +15,6 @@ use Types::Standard ();
 use base 'Exporter::Tiny';
 
 # VERSION
-
-=head1 SYNOPSIS
-
-    package Server;
-
-    use Bubblegum::Class;
-    use Bubblegum::Constraints -typing;
-
-    has typeof_object, config => sub {
-        # build config data
-    };
-
-=head1 DESCRIPTION
-
-Bubblegum::Constraints is the standard type-checking library for L<Bubblegum>
-applications with a focus on minimalism and data integrity.
-
-=cut
 
 our $EXTS = {
     ARRAY     => 'Bubblegum::Object::Array',
@@ -204,6 +185,26 @@ sub _handle_typing {
         @{$tags->{isas}}, @{$tags->{nots}};
 }
 
+1;
+
+=encoding utf8
+
+=head1 SYNOPSIS
+
+    package Server;
+
+    use Bubblegum::Class;
+    use Bubblegum::Constraints -typing;
+
+    has typeof_object, config => sub {
+        # build config data
+    };
+
+=head1 DESCRIPTION
+
+Bubblegum::Constraints is the standard type-checking library for L<Bubblegum>
+applications with a focus on minimalism and data integrity.
+
 =head1 EXPORTS
 
 By default, no functions are exported when using this package, all functionality
@@ -213,9 +214,7 @@ export sets of functions by group name. Any function can also be exported
 individually. The following are a list of functions and groups currently
 available:
 
-=cut
-
-=head2 -attr
+=export -attr
 
 The attr export group currently exports a single functions which overrides the
 C<has> accessor maker in the calling class and implements a more flexible
@@ -299,9 +298,7 @@ is the equivalent of:
         # ...
     }
 
-=cut
-
-=head2 -constraints
+=export -constraints
 
 The constraints export group exports all functions which have the C<_> prefix
 and provides functionality similar to importing the L</-types> and L</-typesof>
@@ -451,9 +448,7 @@ _undefined
 
 =back
 
-=cut
-
-=head2 -isas
+=export -isas
 
 The isas export group exports all functions which have the C<isa_> prefix. These
 functions take a single argument and perform non-fatal type checking and return
@@ -599,18 +594,14 @@ isa_undefined
 
 =back
 
-=cut
-
-=head2 -minimal
+=export -minimal
 
 The minimal export group exports all functions from the L</-constraints>,
 L</-isas>, and L</-nots> export groups as well as the functionality provided by
 the L</-attr> tag. It is a means to export the simplest type-related
 functionality.
 
-=cut
-
-=head2 -nots
+=export -nots
 
 The nots export group exports all functions which have the C<not_> prefix. These
 functions take a single argument and perform non-fatal negated type checking and
@@ -757,9 +748,7 @@ not_undefined
 
 =back
 
-=cut
-
-=head2 -types
+=export -types
 
 The types export group exports all functions which have the C<type_> prefix.
 These functions take a single argument/expression and perform fatal type
@@ -906,9 +895,7 @@ type_undefined
 
 =back
 
-=cut
-
-=head2 -typesof
+=export -typesof
 
 The typesof export group exports all functions which have the C<typeof_> prefix.
 These functions take no argument and return a type-validation code-routine to be
@@ -1055,9 +1042,7 @@ typeof_undefined
 
 =back
 
-=cut
-
-=head2 -typing
+=export -typing
 
 The typing export group exports all functions from the L</-types>, L</-typesof>,
 L</-isas>, and L</-nots> export groups as well as the functionality provided by
@@ -1065,5 +1050,3 @@ the L</-attr> tag. It is a means to export all type-related functions minus the
 multi-purpose functions provided by the L</-constraints> export group.
 
 =cut
-
-1;

@@ -15,6 +15,10 @@ sub import {
     $class->prerequisites($target);
 }
 
+1;
+
+=encoding utf8
+
 =head1 SYNOPSIS
 
     package Person;
@@ -395,5 +399,3 @@ defined. Please see L<Bubblegum::Object::Universal> for more information on
 operations associated with array references.
 
 =cut
-
-1;

@@ -17,6 +17,10 @@ sub import {
     Moo->import::into($target, @export);
 }
 
+1;
+
+=encoding utf8
+
 =head1 SYNOPSIS
 
     package BankAccount;
@@ -61,5 +65,3 @@ is equivalent to
     use Moo;
 
 =cut
-
-1;

@@ -10,6 +10,36 @@ with 'Bubblegum::Object::Role::Value';
 
 # VERSION
 
+sub and {
+    my ($self, $other) =  @_;
+    return $self && $other;
+}
+
+sub not {
+    my ($self) =  @_;
+    return !$self;
+}
+
+sub or {
+    my ($self, $other) =  @_;
+    return $self || $other;
+}
+
+sub repeat {
+    my $self   = CORE::shift;
+    my $number = type_number CORE::shift;
+    return $self x $number;
+}
+
+sub xor {
+    my ($self, $other) =  @_;
+    return ($self xor $other) ? 1 : 0;
+}
+
+1;
+
+=encoding utf8
+
 =head1 SYNOPSIS
 
     use Bubblegum;
@@ -23,8 +53,6 @@ Scalar methods work on data that meets the criteria for being a defined. It is
 not necessary to use this module as it is loaded automatically by the
 L<Bubblegum> class.
 
-=cut
-
 =method and
 
     my $variable = 12345;
@@ -37,13 +65,6 @@ The and method performs a short-circuit logical AND operation using the subject
 as the lvalue and the argument as the rvalue and returns the last truthy value
 or false.
 
-=cut
-
-sub and {
-    my ($self, $other) =  @_;
-    return $self && $other;
-}
-
 =method not
 
     my $variable = 0;
@@ -54,13 +75,6 @@ sub and {
 
 The not method performs a logical negation of the subject. It's the equivalent
 of using bang (!) and return true (1) or false (empty string).
-
-=cut
-
-sub not {
-    my ($self) =  @_;
-    return !$self;
-}
 
 =method or
 
@@ -73,13 +87,6 @@ sub not {
 The or method performs a short-circuit logical OR operation using the subject
 as the lvalue and the argument as the rvalue and returns the first truthy value.
 
-=cut
-
-sub or {
-    my ($self, $other) =  @_;
-    return $self || $other;
-}
-
 =method repeat
 
     my $variable = 12345;
@@ -90,14 +97,6 @@ sub or {
 
 The repeat method returns a string consisting of the subject repeated the number
 of times specified by the argument.
-
-=cut
-
-sub repeat {
-    my $self   = CORE::shift;
-    my $number = type_number CORE::shift;
-    return $self x $number;
-}
 
 =method xor
 
@@ -110,10 +109,3 @@ lvalue and the argument as the rvalue and returns true if either but not both
 is true.
 
 =cut
-
-sub xor {
-    my ($self, $other) =  @_;
-    return ($self xor $other) ? 1 : 0;
-}
-
-1;
