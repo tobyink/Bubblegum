@@ -25,7 +25,7 @@ use base 'Exporter::Tiny';
     use Bubblegum::Constraints -typing;
 
     has typeof_object, config => sub {
-        # load config data
+        # build config data
     };
 
 =head1 DESCRIPTION
@@ -148,6 +148,7 @@ our %EXPORT_TAGS = (
 sub _handle_attr {
     no strict 'refs';
     no warnings 'redefine';
+
     my $args   = pop;
     my $target = $args->{into};
     my $maker  = $target->can('has') or return;
@@ -162,9 +163,11 @@ sub _handle_attr {
                 if ($type) {
                     $props{isa} = $type;
                 }
-                if ($builder) {
+                if ($builder or $builder = $target->can("_build_${name}")) {
                     $props{builder} = "_build_${name}";
-                    *{"${target}::$props{builder}"} = $builder;
+                    unless ($target->can("_build_${name}")) {
+                        *{"${target}::$props{builder}"} = $builder;
+                    }
                 }
                 $maker->($name => (%props));
             }
@@ -179,6 +182,7 @@ sub _handle_attr {
 
 sub _handle_minimal {
     no strict 'refs';
+
     my $class = shift;
     my $name  = 'EXPORT_TAGS';
     my $tags  = \%{"${class}::${name}"};
@@ -190,6 +194,7 @@ sub _handle_minimal {
 
 sub _handle_typing {
     no strict 'refs';
+
     my $class = shift;
     my $name  = 'EXPORT_TAGS';
     my $tags  = \%{"${class}::${name}"};
@@ -269,6 +274,28 @@ is the equivalent of:
     );
 
     sub _build_attr2 {
+        # ...
+    }
+
+also note, attribute builders are implied if a method is discovered with a name
+matching the pattern C<_build_${attribute_name}>, for example:
+
+    use Bubblegum::Constraints -attr;
+
+    has 'attr1';
+
+    sub _build_attr1 {
+        # ...
+    }
+
+is the equivalent of:
+
+    has 'attr1' => (
+        is      => 'ro',
+        builder => '_build_attr1',
+    );
+
+    sub _build_attr1 {
         # ...
     }
 
