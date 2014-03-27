@@ -1,6 +1,7 @@
 Changelog for Bubblegum
 
-0.23 2014-03-27T22:27:39
+0.23 2014-03-27T22:28:18
+ - Updated Makefile and README.
  - Removed Exception::Tiny dependency, updated POD for Bubblegum
    Constraints and Exception.
 
