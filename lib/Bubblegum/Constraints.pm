@@ -145,6 +145,7 @@ sub _handle_attr {
                     $props{isa} = $type;
                 }
                 if ($builder or $builder = $target->can("_build_${name}")) {
+                    $props{lazy}    = 1;
                     $props{builder} = "_build_${name}";
                     unless ($target->can("_build_${name}")) {
                         *{"${target}::$props{builder}"} = $builder;
@@ -257,6 +258,7 @@ is the equivalent of:
 
     has 'attr1' => (
         is      => 'ro',
+        lazy    => 1,
         builder => '_build_attr1',
     );
 
@@ -267,6 +269,7 @@ is the equivalent of:
     has 'attr2' => (
         is      => 'ro',
         isa     => typeof_object,
+        lazy    => 1,
         builder => '_build_attr2',
     );
 
@@ -289,6 +292,7 @@ is the equivalent of:
 
     has 'attr1' => (
         is      => 'ro',
+        lazy    => 1,
         builder => '_build_attr1',
     );
 
