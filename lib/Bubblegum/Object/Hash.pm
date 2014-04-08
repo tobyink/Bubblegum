@@ -1,6 +1,7 @@
 # ABSTRACT: Common Methods for Operating on Hash References
 package Bubblegum::Object::Hash;
 
+use 5.10.0;
 use Bubblegum::Class 'with';
 use Bubblegum::Constraints -types;
 
@@ -18,6 +19,10 @@ sub array_slice {
     my $self = CORE::shift;
     my @keys = map { type_string $_ } @_;
     return [@{$self}{@keys}];
+}
+
+sub clear {
+    goto &empty;
 }
 
 sub defined {
@@ -247,6 +252,13 @@ The aslice method is an alias to the array_slice method.
 The array_slice method returns an array reference containing the values in the
 subject corresponding to the keys specified in the arguments in the order
 specified.
+
+=method clear
+
+    my $hash = {1..8};
+    $hash->clear; # {}
+
+The clear method is an alias to the empty method.
 
 =method defined
 
@@ -479,5 +491,13 @@ argument.
 
 The values method returns an array reference consisting of the values of the
 elements in the subject.
+
+=head1 SEE ALSO
+
+L<Bubblegum::Object::Array>, L<Bubblegum::Object::Code>,
+L<Bubblegum::Object::Hash>, L<Bubblegum::Object::Instance>,
+L<Bubblegum::Object::Integer>, L<Bubblegum::Object::Number>,
+L<Bubblegum::Object::Scalar>, L<Bubblegum::Object::String>,
+L<Bubblegum::Object::Undef>, L<Bubblegum::Object::Universal>,
 
 =cut

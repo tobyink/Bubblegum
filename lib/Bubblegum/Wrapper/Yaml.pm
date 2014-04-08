@@ -1,6 +1,7 @@
 # ABSTRACT: Bubblegum Wrapper around YAML Serialization
 package Bubblegum::Wrapper::Yaml;
 
+use 5.10.0;
 use Bubblegum::Class;
 use Class::Load 'load_class';
 

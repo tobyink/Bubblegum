@@ -1,6 +1,7 @@
 # ABSTRACT: Bubblegum Wrapper around Hashing Algorithms
 package Bubblegum::Wrapper::Digest;
 
+use 5.10.0;
 use Bubblegum::Class;
 
 use Digest::MD5 ();
@@ -16,7 +17,10 @@ sub BUILD {
     my $self = shift;
     $self->data->typeof('str')
         or Bubblegum::Exception->throw(
-            ref($self)->format('Wrapper package "%s" requires string data')
+            verbose => 1,
+            message => ref($self)->format(
+                'Wrapper package "%s" requires string data'
+            ),
         );
 }
 

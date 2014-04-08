@@ -1,5 +1,6 @@
 package Bubblegum::Object::Role::Comparison;
 
+use 5.10.0;
 use Bubblegum::Role 'requires', 'with';
 
 with 'Bubblegum::Object::Role::Item';

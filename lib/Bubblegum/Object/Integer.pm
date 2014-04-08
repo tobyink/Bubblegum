@@ -1,6 +1,7 @@
 # ABSTRACT: Common Methods for Operating on Integers
 package Bubblegum::Object::Integer;
 
+use 5.10.0;
 use Bubblegum::Class 'with';
 use Bubblegum::Constraints -types;
 
@@ -218,5 +219,13 @@ the argument, the range generated will be from least to greatest.
 The upto method returns an array reference containing a range of integers
 from the subject to the argument. Assumes the subject is lesser than the
 argument.
+
+=head1 SEE ALSO
+
+L<Bubblegum::Object::Array>, L<Bubblegum::Object::Code>,
+L<Bubblegum::Object::Hash>, L<Bubblegum::Object::Instance>,
+L<Bubblegum::Object::Integer>, L<Bubblegum::Object::Number>,
+L<Bubblegum::Object::Scalar>, L<Bubblegum::Object::String>,
+L<Bubblegum::Object::Undef>, L<Bubblegum::Object::Universal>,
 
 =cut

@@ -1,6 +1,7 @@
 # ABSTRACT: Generic Container Class for Passing Data
 package Bubblegum::Object::Instance;
 
+use 5.10.0;
 use Bubblegum::Class;
 
 # VERSION
@@ -32,5 +33,13 @@ L<Bubblegum> class.
     $self->data(...);
 
 The data attribute holds some arbitrary value to be operated on.
+
+=head1 SEE ALSO
+
+L<Bubblegum::Object::Array>, L<Bubblegum::Object::Code>,
+L<Bubblegum::Object::Hash>, L<Bubblegum::Object::Instance>,
+L<Bubblegum::Object::Integer>, L<Bubblegum::Object::Number>,
+L<Bubblegum::Object::Scalar>, L<Bubblegum::Object::String>,
+L<Bubblegum::Object::Undef>, L<Bubblegum::Object::Universal>,
 
 =cut

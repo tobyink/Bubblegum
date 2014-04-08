@@ -1,6 +1,7 @@
 # ABSTRACT: Common Methods for Operating on Scalars
 package Bubblegum::Object::Scalar;
 
+use 5.10.0;
 use Scalar::Util ();
 
 use Bubblegum::Class 'with';
@@ -107,5 +108,13 @@ of times specified by the argument.
 The xor method performs an exclusive OR operation using the subject as the
 lvalue and the argument as the rvalue and returns true if either but not both
 is true.
+
+=head1 SEE ALSO
+
+L<Bubblegum::Object::Array>, L<Bubblegum::Object::Code>,
+L<Bubblegum::Object::Hash>, L<Bubblegum::Object::Instance>,
+L<Bubblegum::Object::Integer>, L<Bubblegum::Object::Number>,
+L<Bubblegum::Object::Scalar>, L<Bubblegum::Object::String>,
+L<Bubblegum::Object::Undef>, L<Bubblegum::Object::Universal>,
 
 =cut

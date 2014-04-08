@@ -70,7 +70,7 @@ sub as_string {
     my @params = ($self->message, $self->file, $self->line);
 
     if ($self->verbose) {
-        $output .= ":\n%s";
+        $output .= ":\n\n%s";
         push @params, $self->stacktrace->as_string;
     }
 

@@ -1,5 +1,6 @@
 package Bubblegum::Object::Float;
 
+use 5.10.0;
 use Bubblegum::Class 'with';
 use Bubblegum::Constraints -types;
 

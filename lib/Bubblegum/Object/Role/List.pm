@@ -1,5 +1,6 @@
 package Bubblegum::Object::Role::List;
 
+use 5.10.0;
 use Bubblegum::Role 'requires', 'with';
 use Bubblegum::Constraints -types;
 

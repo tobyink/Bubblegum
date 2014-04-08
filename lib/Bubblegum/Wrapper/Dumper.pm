@@ -1,6 +1,7 @@
 # ABSTRACT: Bubblegum Wrapper around Data Dumping
 package Bubblegum::Wrapper::Dumper;
 
+use 5.10.0;
 use Bubblegum::Class;
 use Data::Dumper ();
 

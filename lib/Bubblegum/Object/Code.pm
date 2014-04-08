@@ -1,6 +1,7 @@
 # ABSTRACT: Common Methods for Operating on Code References
 package Bubblegum::Object::Code;
 
+use 5.10.0;
 use Bubblegum::Class 'with';
 use Bubblegum::Constraints -types;
 
@@ -144,5 +145,13 @@ argument as the rvalue.
 
 The next method is an alias to the call method. The naming is especially useful
 (i.e. helps with readability) when used with closure-based iterators.
+
+=head1 SEE ALSO
+
+L<Bubblegum::Object::Array>, L<Bubblegum::Object::Code>,
+L<Bubblegum::Object::Hash>, L<Bubblegum::Object::Instance>,
+L<Bubblegum::Object::Integer>, L<Bubblegum::Object::Number>,
+L<Bubblegum::Object::Scalar>, L<Bubblegum::Object::String>,
+L<Bubblegum::Object::Undef>, L<Bubblegum::Object::Universal>,
 
 =cut

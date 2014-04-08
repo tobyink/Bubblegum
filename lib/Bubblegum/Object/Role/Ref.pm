@@ -1,5 +1,6 @@
 package Bubblegum::Object::Role::Ref;
 
+use 5.10.0;
 use Bubblegum::Role 'with';
 use Bubblegum::Constraints -types;
 

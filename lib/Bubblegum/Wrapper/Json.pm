@@ -1,6 +1,7 @@
 # ABSTRACT: Bubblegum Wrapper around JSON Serialization
 package Bubblegum::Wrapper::Json;
 
+use 5.10.0;
 use Bubblegum::Class;
 use Class::Load 'load_class';
 
