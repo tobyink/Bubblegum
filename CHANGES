@@ -1,6 +1,6 @@
 Changelog for Bubblegum
 
-0.26 2014-04-08T05:32:56
+0.26 2014-04-08T05:37:03
  - Updated dist.ini.
  - Updated POD, README, and Makefile.
  - Added experimental indirect method/role.
