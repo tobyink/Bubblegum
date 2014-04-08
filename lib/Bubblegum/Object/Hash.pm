@@ -6,6 +6,7 @@ use Bubblegum::Class 'with';
 use Bubblegum::Constraints -types;
 
 with 'Bubblegum::Object::Role::Defined';
+with 'Bubblegum::Object::Role::Indirect';
 with 'Bubblegum::Object::Role::Keyed';
 with 'Bubblegum::Object::Role::Ref';
 
