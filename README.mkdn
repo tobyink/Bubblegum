@@ -4,7 +4,7 @@ Bubblegum - Opinionated Modern Perl Development Framework
 
 # VERSION
 
-version 0.25
+version 0.26 <a href="https://travis-ci.org/alnewkirk/Bubblegum"><img src="https://travis-ci.org/alnewkirk/Bubblegum.svg?branch=master"></a>
 
 # SYNOPSIS
 
