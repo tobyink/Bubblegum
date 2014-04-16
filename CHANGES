@@ -1,6 +1,7 @@
 Changelog for Bubblegum
 
-0.27 2014-04-16T07:37:22
+0.27 2014-04-16T07:39:01
+ - Updated POD, README, and Makefile.
  - Fix to prevent autoboxing from creating Moo objects.
  - Removed all-fatal warnings configuration.
  - Miscellaneous POD Update (main module).
