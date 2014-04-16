@@ -9,6 +9,8 @@ with 'Bubblegum::Object::Role::Defined';
 with 'Bubblegum::Object::Role::Comparison';
 with 'Bubblegum::Object::Role::Value';
 
+our @ISA = (); # non-object
+
 # VERSION
 
 sub downto {

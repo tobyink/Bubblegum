@@ -9,6 +9,8 @@ use Bubblegum::Constraints -types;
 
 with 'Bubblegum::Object::Role::Value';
 
+our @ISA = (); # non-object
+
 # VERSION
 
 sub and {

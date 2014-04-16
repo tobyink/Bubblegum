@@ -12,6 +12,8 @@ with 'Bubblegum::Object::Role::Comparison';
 with 'Bubblegum::Object::Role::Coercive';
 with 'Bubblegum::Object::Role::Value';
 
+our @ISA = (); # non-object
+
 # VERSION
 
 sub eq {

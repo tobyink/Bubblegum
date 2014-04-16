@@ -8,6 +8,8 @@ use Bubblegum::Constraints -types;
 with 'Bubblegum::Object::Role::Coercive';
 with 'Bubblegum::Object::Role::Value';
 
+our @ISA = (); # non-object
+
 # VERSION
 
 sub abs {

@@ -17,6 +17,8 @@ use Syntax::Keyword::Junction::None ();
 use Syntax::Keyword::Junction::One  ();
 use Scalar::Util ();
 
+our @ISA = (); # non-object
+
 # VERSION
 
 sub all {

@@ -6,6 +6,8 @@ use Bubblegum::Class 'with';
 
 with 'Bubblegum::Object::Role::Item';
 
+our @ISA = (); # non-object
+
 # VERSION
 
 sub defined {

@@ -10,6 +10,8 @@ use Bubblegum::Constraints 'type_classname', 'type_object', 'type_string';
 use Class::Load 'load_class';
 use Scalar::Util 'blessed';
 
+our @ISA = (); # non-object
+
 # VERSION
 
 sub instance {

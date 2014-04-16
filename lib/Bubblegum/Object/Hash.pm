@@ -10,6 +10,8 @@ with 'Bubblegum::Object::Role::Indirect';
 with 'Bubblegum::Object::Role::Keyed';
 with 'Bubblegum::Object::Role::Ref';
 
+our @ISA = (); # non-object
+
 # VERSION
 
 sub aslice {

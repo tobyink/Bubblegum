@@ -4,6 +4,8 @@ package Bubblegum::Object::Instance;
 use 5.10.0;
 use Bubblegum::Class;
 
+our @ISA = (); # non-object
+
 # VERSION
 
 has 'data' => (

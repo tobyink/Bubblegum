@@ -8,6 +8,8 @@ use Bubblegum::Constraints -types;
 with 'Bubblegum::Object::Role::Defined';
 with 'Bubblegum::Object::Role::Ref';
 
+our @ISA = (); # non-object
+
 # VERSION
 
 sub call {
