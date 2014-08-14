@@ -31,13 +31,14 @@ sub of {
         undef => 'undef',
     };
 
-    if ($alias->{$type}) {
-        $type = $alias->{$type};
+    if ($alias->{lc $type}) {
+        $type = $alias->{lc $type};
     }
 
-    my $kind = $map->{uc $type};
+    my $kind  = $map->{uc $type};
+    my $class = $self->autobox_class;
 
-    return $kind && $self->autobox_class->isa($kind) ? 1 : 0;
+    return $kind && $class->isa($kind) ? 1 : 0;
 }
 
 sub type {

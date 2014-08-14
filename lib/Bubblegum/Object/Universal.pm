@@ -16,7 +16,7 @@ our @ISA = (); # non-object
 
 sub instance {
     my $self  = CORE::shift;
-    my $class = load_class 'Bubblegum::Object::Instance';
+    my $class = load_class $$Bubblegum::Constraints::USES{'INSTANCE'};
     return type_object $class->new(data => $self);
 }
 
@@ -29,7 +29,7 @@ sub utils {
 sub wrapper {
     my $self    = CORE::shift;
     my $name    = type_string CORE::shift;
-    my $space   = 'Bubblegum::Wrapper';
+    my $space   = $$Bubblegum::Constraints::USES{'WRAPPER'};
     my $wrapper = Class::Forward->new(namespace => $space)->forward($name);
     my $plugin  = type_classname(load_class($wrapper));
     return $plugin->new(data => $self) if $plugin;

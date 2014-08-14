@@ -29,6 +29,12 @@ our $EXTS = {
     UNIVERSAL => 'Bubblegum::Object::Universal',
 };
 
+our $USES = {
+    %$EXTS,
+    INSTANCE => 'Bubblegum::Object::Instance',
+    WRAPPER  => 'Bubblegum::Wrapper',
+};
+
 my $TYPES = {
     ArrayRef   => [qw(aref arrayref)],
     Bool       => [qw(bool boolean)],

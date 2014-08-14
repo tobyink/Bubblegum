@@ -1,6 +1,10 @@
 Changelog for Bubblegum
 
-0.27 2014-04-16T07:39:01
+0.28 2014-08-14T06:08:02
+ - Added tests and documentation to support the rebasing concept.
+
+0.27 2014-04-16T07:39:18
+ - v0.27
  - Updated POD, README, and Makefile.
  - Fix to prevent autoboxing from creating Moo objects.
  - Removed all-fatal warnings configuration.

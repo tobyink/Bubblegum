@@ -34,7 +34,7 @@ sub import {
             (&_object, &_string);
 
         return $subject->titlecase->format(
-            'Hello %s. My name is %s, nice to meet you.',
+            "Hello %s. My name is %s, nice to meet you.",
                 $self->firstname->titlecase
         );
     }
@@ -67,10 +67,10 @@ is equivalent to
 
     use 5.10.0;
     use strict;
+    use warnings;
     use autobox;
     use autodie ':all';
     use feature ':5.10';
-    use warnings FATAL => 'all';
     use English -no_match_vars;
     use utf8::all;
     use mro 'c3';
@@ -321,6 +321,60 @@ to encode/decode Perl data structures as JSON documents.
 
 The Bubblegum yaml wrapper, L<Bubblegum::Wrapper::Yaml>, provides functionality
 to encode/decode Perl data structures as YAML documents.
+
+=head2 Bubblegum Rebasing
+
+As an alternative to using Bubblegum wrappers, you can rebase (i.e. extend) the
+Bubblegum framework directly, and customize it for your application-specific
+usages. The following is an example of how you can accomplish this:
+
+    package MyApp::Core;
+
+    use MyApp::Core::Object::Array;
+    use MyApp::Core::Object::Code;
+    use MyApp::Core::Object::Float;
+    use MyApp::Core::Object::Hash;
+    use MyApp::Core::Object::Integer;
+    use MyApp::Core::Object::Number;
+    use MyApp::Core::Object::Scalar;
+    use MyApp::Core::Object::String;
+    use MyApp::Core::Object::Undef;
+    use MyApp::Core::Object::Universal;
+
+    use parent 'Bubblegum';
+
+    my $USES = $Bubblegum::Constraints::USES;
+
+    $$USES{'ARRAY'}     = 'MyApp::Core::Object::Array';
+    $$USES{'CODE'}      = 'MyApp::Core::Object::Code';
+    $$USES{'FLOAT'}     = 'MyApp::Core::Object::Float';
+    $$USES{'HASH'}      = 'MyApp::Core::Object::Hash';
+    $$USES{'INTEGER'}   = 'MyApp::Core::Object::Integer';
+    $$USES{'NUMBER'}    = 'MyApp::Core::Object::Number';
+    $$USES{'SCALAR'}    = 'MyApp::Core::Object::Scalar';
+    $$USES{'STRING'}    = 'MyApp::Core::Object::String';
+    $$USES{'UNDEF'}     = 'MyApp::Core::Object::Undef';
+    $$USES{'UNIVERSAL'} = 'MyApp::Core::Object::Universal';
+
+    1;
+
+The example above creates an application-specific package derived from Bubblegum
+and changes the default Bubblegum object class namespaces to application-specific
+ones. Each class will need to be derived from its respective Bubblegum
+counterpart, for example:
+
+    package MyApp::Core::Object::Array;
+
+    use parent 'Bubblegum::Object::Array';
+
+    sub pushpop {
+        push @{(shift)}, pop @{(shift)};
+    }
+
+    1;
+
+This allows you to add and/or override object methods and tailor object type
+handling around your specific use-cases.
 
 =head2 Bubblegum Data Type Operations
 

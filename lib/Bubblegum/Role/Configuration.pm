@@ -39,7 +39,11 @@ sub prerequisites {
     'English'->import::into($target, '-no_match_vars');
 
     # autobox
-    $target->autobox::import(%{$Bubblegum::Constraints::EXTS});
+    no warnings 'once';
+    $target->autobox::import(
+        map { $_ => $$Bubblegum::Constraints::USES{$_} }
+            keys %$Bubblegum::Constraints::EXTS
+    );
 }
 
 1;
