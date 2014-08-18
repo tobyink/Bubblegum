@@ -1,6 +1,6 @@
 Changelog for Bubblegum
 
-0.28 2014-08-18T08:20:44
+0.28 2014-08-18T08:42:29
  - Added documentation destined for type checking and assertions, as well
    as wrappers, to Bubblegum::Object::Universal.
  - Removed AUTOLOADing, Added standard assertions to
