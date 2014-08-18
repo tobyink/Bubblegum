@@ -146,14 +146,14 @@ The yaml method blesses the subject into the wrapper class,
 L<Bubblegum::Object::Yaml>, and returns an instance. Please see
 L<Bubblegum::Object::Yaml> for more information.
 
-=head2 Type Validation
+=head1 TYPE VALIDATION
 
 All data type objects have access to type checking and validation methods which
 can be call to help ensure data integrity. The following is a list of standard
 type checking and validation methods whose routines map to those corresponding
 in the L<Types::Standard> library.
 
-=method asa_aref
+=head2 asa_aref
 
     my $thing = undef;
     $thing->asa_aref;
@@ -161,7 +161,7 @@ in the L<Types::Standard> library.
 The aref method asserts that the caller is an array reference. If the caller is
 not an array reference, the program will die.
 
-=method asa_arrayref
+=head2 asa_arrayref
 
     my $thing = undef;
     $thing->asa_arrayref;
@@ -169,7 +169,7 @@ not an array reference, the program will die.
 The arrayref method asserts that the caller is an array reference. If the caller
 is not an array reference, the program will die.
 
-=method asa_bool
+=head2 asa_bool
 
     my $thing = undef;
     $thing->asa_bool;
@@ -177,7 +177,7 @@ is not an array reference, the program will die.
 The bool method asserts that the caller is a boolean value. If the caller is not
 a boolean value, the program will die.
 
-=method asa_boolean
+=head2 asa_boolean
 
     my $thing = undef;
     $thing->asa_boolean;
@@ -185,7 +185,7 @@ a boolean value, the program will die.
 The boolean method asserts that the caller is a boolean value. If the caller is
 not a boolean value, the program will die.
 
-=method asa_class
+=head2 asa_class
 
     my $thing = undef;
     $thing->asa_class;
@@ -193,7 +193,7 @@ not a boolean value, the program will die.
 The class method asserts that the caller is a class name. If the caller is not a
 class name, the program will die.
 
-=method asa_classname
+=head2 asa_classname
 
     my $thing = undef;
     $thing->asa_classname;
@@ -201,7 +201,7 @@ class name, the program will die.
 The classname method asserts that the caller is a class name. If the caller is
 not a class name, the program will die.
 
-=method asa_coderef
+=head2 asa_coderef
 
     my $thing = undef;
     $thing->asa_coderef;
@@ -209,7 +209,7 @@ not a class name, the program will die.
 The coderef method asserts that the caller is a code reference. If the caller is
 not a code reference, the program will die.
 
-=method asa_cref
+=head2 asa_cref
 
     my $thing = undef;
     $thing->asa_cref;
@@ -217,7 +217,7 @@ not a code reference, the program will die.
 The cref method asserts that the caller is a code reference. If the caller is
 not a code reference, the program will die.
 
-=method asa_def
+=head2 asa_def
 
     my $thing = undef;
     $thing->asa_def;
@@ -225,7 +225,7 @@ not a code reference, the program will die.
 The def method asserts that the caller is a defined value. If the caller is not
 a defined value, the program will die.
 
-=method asa_defined
+=head2 asa_defined
 
     my $thing = undef;
     $thing->asa_defined;
@@ -233,7 +233,7 @@ a defined value, the program will die.
 The defined method asserts that the caller is a defined value. If the caller is
 not a defined value, the program will die.
 
-=method asa_fh
+=head2 asa_fh
 
     my $thing = undef;
     $thing->asa_fh;
@@ -241,7 +241,7 @@ not a defined value, the program will die.
 The fh method asserts that the caller is a file handle. If the caller is not a
 file handle, the program will die.
 
-=method asa_filehandle
+=head2 asa_filehandle
 
     my $thing = undef;
     $thing->asa_filehandle;
@@ -249,7 +249,7 @@ file handle, the program will die.
 The filehandle method asserts that the caller is a file handle. If the caller is
 not a file handle, the program will die.
 
-=method asa_glob
+=head2 asa_glob
 
     my $thing = undef;
     $thing->asa_glob;
@@ -257,7 +257,7 @@ not a file handle, the program will die.
 The glob method asserts that the caller is a glob reference. If the caller is
 not a glob reference, the program will die.
 
-=method asa_globref
+=head2 asa_globref
 
     my $thing = undef;
     $thing->asa_globref;
@@ -265,7 +265,7 @@ not a glob reference, the program will die.
 The globref method asserts that the caller is a glob reference. If the caller is
 not a glob reference, the program will die.
 
-=method asa_hashref
+=head2 asa_hashref
 
     my $thing = undef;
     $thing->asa_hashref;
@@ -273,7 +273,7 @@ not a glob reference, the program will die.
 The hashref method asserts that the caller is a hash reference. If the caller is
 not a hash reference, the program will die.
 
-=method asa_href
+=head2 asa_href
 
     my $thing = undef;
     $thing->asa_href;
@@ -281,7 +281,7 @@ not a hash reference, the program will die.
 The href method asserts that the caller is a hash reference. If the caller is
 not a hash reference, the program will die.
 
-=method asa_int
+=head2 asa_int
 
     my $thing = undef;
     $thing->asa_int;
@@ -289,7 +289,7 @@ not a hash reference, the program will die.
 The int method asserts that the caller is an integer. If the caller is not an
 integer, the program will die.
 
-=method asa_integer
+=head2 asa_integer
 
     my $thing = undef;
     $thing->asa_integer;
@@ -297,7 +297,7 @@ integer, the program will die.
 The integer method asserts that the caller is an integer. If the caller is not
 an integer, the program will die.
 
-=method asa_num
+=head2 asa_num
 
     my $thing = undef;
     $thing->asa_num;
@@ -305,7 +305,7 @@ an integer, the program will die.
 The num method asserts that the caller is a number. If the caller is not a
 number, the program will die.
 
-=method asa_number
+=head2 asa_number
 
     my $thing = undef;
     $thing->asa_number;
@@ -313,7 +313,7 @@ number, the program will die.
 The number method asserts that the caller is a number. If the caller is not a
 number, the program will die.
 
-=method asa_obj
+=head2 asa_obj
 
     my $thing = undef;
     $thing->asa_obj;
@@ -321,7 +321,7 @@ number, the program will die.
 The obj method asserts that the caller is an object. If the caller is not an
 object, the program will die.
 
-=method asa_object
+=head2 asa_object
 
     my $thing = undef;
     $thing->asa_object;
@@ -329,7 +329,7 @@ object, the program will die.
 The object method asserts that the caller is an object. If the caller is not an
 object, the program will die.
 
-=method asa_ref
+=head2 asa_ref
 
     my $thing = undef;
     $thing->asa_ref;
@@ -337,7 +337,7 @@ object, the program will die.
 The ref method asserts that the caller is a reference. If the caller is not a
 reference, the program will die.
 
-=method asa_reference
+=head2 asa_reference
 
     my $thing = undef;
     $thing->asa_reference;
@@ -345,7 +345,7 @@ reference, the program will die.
 The reference method asserts that the caller is a reference. If the caller is
 not a reference, the program will die.
 
-=method asa_regexpref
+=head2 asa_regexpref
 
     my $thing = undef;
     $thing->asa_regexpref;
@@ -353,7 +353,7 @@ not a reference, the program will die.
 The regexpref method asserts that the caller is a regular expression reference.
 If the caller is not a regular expression reference, the program will die.
 
-=method asa_rref
+=head2 asa_rref
 
     my $thing = undef;
     $thing->asa_rref;
@@ -361,7 +361,7 @@ If the caller is not a regular expression reference, the program will die.
 The rref method asserts that the caller is a regular expression reference. If
 the caller is not a regular expression reference, the program will die.
 
-=method asa_scalarref
+=head2 asa_scalarref
 
     my $thing = undef;
     $thing->asa_scalarref;
@@ -369,7 +369,7 @@ the caller is not a regular expression reference, the program will die.
 The scalarref method asserts that the caller is a scalar reference. If the
 caller is not a scalar reference, the program will die.
 
-=method asa_sref
+=head2 asa_sref
 
     my $thing = undef;
     $thing->asa_sref;
@@ -377,7 +377,7 @@ caller is not a scalar reference, the program will die.
 The sref method asserts that the caller is a scalar reference. If the caller is
 not a scalar reference, the program will die.
 
-=method asa_str
+=head2 asa_str
 
     my $thing = undef;
     $thing->asa_str;
@@ -385,7 +385,7 @@ not a scalar reference, the program will die.
 The str method asserts that the caller is a string. If the caller is not a
 string, the program will die.
 
-=method asa_string
+=head2 asa_string
 
     my $thing = undef;
     $thing->asa_string;
@@ -393,7 +393,7 @@ string, the program will die.
 The string method asserts that the caller is a string. If the caller is not a
 string, the program will die.
 
-=method asa_nil
+=head2 asa_nil
 
     my $thing = undef;
     $thing->asa_nil;
@@ -401,7 +401,7 @@ string, the program will die.
 The nil method asserts that the caller is an undefined value. If the caller is
 not an undefined value, the program will die.
 
-=method asa_null
+=head2 asa_null
 
     my $thing = undef;
     $thing->asa_null;
@@ -409,7 +409,7 @@ not an undefined value, the program will die.
 The null method asserts that the caller is an undefined value. If the caller is
 not an undefined value, the program will die.
 
-=method asa_undef
+=head2 asa_undef
 
     my $thing = undef;
     $thing->asa_undef;
@@ -417,7 +417,7 @@ not an undefined value, the program will die.
 The undef method asserts that the caller is an undefined value. If the caller is
 not an undefined value, the program will die.
 
-=method asa_undefined
+=head2 asa_undefined
 
     my $thing = undef;
     $thing->asa_undefined;
@@ -425,7 +425,7 @@ not an undefined value, the program will die.
 The undefined method asserts that the caller is an undefined value. If the
 caller is not an undefined value, the program will die.
 
-=method asa_val
+=head2 asa_val
 
     my $thing = undef;
     $thing->asa_val;
@@ -433,7 +433,7 @@ caller is not an undefined value, the program will die.
 The val method asserts that the caller is a value. If the caller is not a value,
 the program will die.
 
-=method asa_value
+=head2 asa_value
 
     my $thing = undef;
     $thing->asa_value;
@@ -441,7 +441,7 @@ the program will die.
 The value method asserts that the caller is a value. If the caller is not a
 value, the program will die.
 
-=method isa_aref
+=head2 isa_aref
 
     my $thing = undef;
     $thing->isa_aref;
@@ -449,7 +449,7 @@ value, the program will die.
 The aref method checks that the caller is an array reference. If the caller is
 not an array reference, the method will return false.
 
-=method isa_arrayref
+=head2 isa_arrayref
 
     my $thing = undef;
     $thing->isa_arrayref;
@@ -457,7 +457,7 @@ not an array reference, the method will return false.
 The arrayref method checks that the caller is an array reference. If the caller
 is not an array reference, the method will return false.
 
-=method isa_bool
+=head2 isa_bool
 
     my $thing = undef;
     $thing->isa_bool;
@@ -465,7 +465,7 @@ is not an array reference, the method will return false.
 The bool method checks that the caller is a boolean value. If the caller is not
 a boolean value, the method will return false.
 
-=method isa_boolean
+=head2 isa_boolean
 
     my $thing = undef;
     $thing->isa_boolean;
@@ -473,7 +473,7 @@ a boolean value, the method will return false.
 The boolean method checks that the caller is a boolean value. If the caller is
 not a boolean value, the method will return false.
 
-=method isa_class
+=head2 isa_class
 
     my $thing = undef;
     $thing->isa_class;
@@ -481,7 +481,7 @@ not a boolean value, the method will return false.
 The class method checks that the caller is a class name. If the caller is not a
 class name, the method will return false.
 
-=method isa_classname
+=head2 isa_classname
 
     my $thing = undef;
     $thing->isa_classname;
@@ -489,7 +489,7 @@ class name, the method will return false.
 The classname method checks that the caller is a class name. If the caller is
 not a class name, the method will return false.
 
-=method isa_coderef
+=head2 isa_coderef
 
     my $thing = undef;
     $thing->isa_coderef;
@@ -497,7 +497,7 @@ not a class name, the method will return false.
 The coderef method checks that the caller is a code reference. If the caller is
 not a code reference, the method will return false.
 
-=method isa_cref
+=head2 isa_cref
 
     my $thing = undef;
     $thing->isa_cref;
@@ -505,7 +505,7 @@ not a code reference, the method will return false.
 The cref method checks that the caller is a code reference. If the caller is not
 a code reference, the method will return false.
 
-=method isa_def
+=head2 isa_def
 
     my $thing = undef;
     $thing->isa_def;
@@ -513,7 +513,7 @@ a code reference, the method will return false.
 The def method checks that the caller is a defined value. If the caller is not a
 defined value, the method will return false.
 
-=method isa_defined
+=head2 isa_defined
 
     my $thing = undef;
     $thing->isa_defined;
@@ -521,7 +521,7 @@ defined value, the method will return false.
 The defined method checks that the caller is a defined value. If the caller is
 not a defined value, the method will return false.
 
-=method isa_fh
+=head2 isa_fh
 
     my $thing = undef;
     $thing->isa_fh;
@@ -529,7 +529,7 @@ not a defined value, the method will return false.
 The fh method checks that the caller is a file handle. If the caller is not a
 file handle, the method will return false.
 
-=method isa_filehandle
+=head2 isa_filehandle
 
     my $thing = undef;
     $thing->isa_filehandle;
@@ -537,7 +537,7 @@ file handle, the method will return false.
 The filehandle method checks that the caller is a file handle. If the caller is
 not a file handle, the method will return false.
 
-=method isa_glob
+=head2 isa_glob
 
     my $thing = undef;
     $thing->isa_glob;
@@ -545,7 +545,7 @@ not a file handle, the method will return false.
 The glob method checks that the caller is a glob reference. If the caller is not
 a glob reference, the method will return false.
 
-=method isa_globref
+=head2 isa_globref
 
     my $thing = undef;
     $thing->isa_globref;
@@ -553,7 +553,7 @@ a glob reference, the method will return false.
 The globref method checks that the caller is a glob reference. If the caller is
 not a glob reference, the method will return false.
 
-=method isa_hashref
+=head2 isa_hashref
 
     my $thing = undef;
     $thing->isa_hashref;
@@ -561,7 +561,7 @@ not a glob reference, the method will return false.
 The hashref method checks that the caller is a hash reference. If the caller is
 not a hash reference, the method will return false.
 
-=method isa_href
+=head2 isa_href
 
     my $thing = undef;
     $thing->isa_href;
@@ -569,7 +569,7 @@ not a hash reference, the method will return false.
 The href method checks that the caller is a hash reference. If the caller is not
 a hash reference, the method will return false.
 
-=method isa_int
+=head2 isa_int
 
     my $thing = undef;
     $thing->isa_int;
@@ -577,7 +577,7 @@ a hash reference, the method will return false.
 The int method checks that the caller is an integer. If the caller is not an
 integer, the method will return false.
 
-=method isa_integer
+=head2 isa_integer
 
     my $thing = undef;
     $thing->isa_integer;
@@ -585,7 +585,7 @@ integer, the method will return false.
 The integer method checks that the caller is an integer. If the caller is not an
 integer, the method will return false.
 
-=method isa_num
+=head2 isa_num
 
     my $thing = undef;
     $thing->isa_num;
@@ -593,7 +593,7 @@ integer, the method will return false.
 The num method checks that the caller is a number. If the caller is not a
 number, the method will return false.
 
-=method isa_number
+=head2 isa_number
 
     my $thing = undef;
     $thing->isa_number;
@@ -601,7 +601,7 @@ number, the method will return false.
 The number method checks that the caller is a number. If the caller is not a
 number, the method will return false.
 
-=method isa_obj
+=head2 isa_obj
 
     my $thing = undef;
     $thing->isa_obj;
@@ -609,7 +609,7 @@ number, the method will return false.
 The obj method checks that the caller is an object. If the caller is not an
 object, the method will return false.
 
-=method isa_object
+=head2 isa_object
 
     my $thing = undef;
     $thing->isa_object;
@@ -617,7 +617,7 @@ object, the method will return false.
 The object method checks that the caller is an object. If the caller is not an
 object, the method will return false.
 
-=method isa_ref
+=head2 isa_ref
 
     my $thing = undef;
     $thing->isa_ref;
@@ -625,7 +625,7 @@ object, the method will return false.
 The ref method checks that the caller is a reference. If the caller is not a
 reference, the method will return false.
 
-=method isa_reference
+=head2 isa_reference
 
     my $thing = undef;
     $thing->isa_reference;
@@ -633,7 +633,7 @@ reference, the method will return false.
 The reference method checks that the caller is a reference. If the caller is not
 a reference, the method will return false.
 
-=method isa_regexpref
+=head2 isa_regexpref
 
     my $thing = undef;
     $thing->isa_regexpref;
@@ -642,7 +642,7 @@ The regexpref method checks that the caller is a regular expression reference.
 If the caller is not a regular expression reference, the method will return
 false.
 
-=method isa_rref
+=head2 isa_rref
 
     my $thing = undef;
     $thing->isa_rref;
@@ -650,7 +650,7 @@ false.
 The rref method checks that the caller is a regular expression reference. If the
 caller is not a regular expression reference, the method will return false.
 
-=method isa_scalarref
+=head2 isa_scalarref
 
     my $thing = undef;
     $thing->isa_scalarref;
@@ -658,7 +658,7 @@ caller is not a regular expression reference, the method will return false.
 The scalarref method checks that the caller is a scalar reference. If the caller
 is not a scalar reference, the method will return false.
 
-=method isa_sref
+=head2 isa_sref
 
     my $thing = undef;
     $thing->isa_sref;
@@ -666,7 +666,7 @@ is not a scalar reference, the method will return false.
 The sref method checks that the caller is a scalar reference. If the caller is
 not a scalar reference, the method will return false.
 
-=method isa_str
+=head2 isa_str
 
     my $thing = undef;
     $thing->isa_str;
@@ -674,7 +674,7 @@ not a scalar reference, the method will return false.
 The str method checks that the caller is a string. If the caller is not a
 string, the method will return false.
 
-=method isa_string
+=head2 isa_string
 
     my $thing = undef;
     $thing->isa_string;
@@ -682,7 +682,7 @@ string, the method will return false.
 The string method checks that the caller is a string. If the caller is not a
 string, the method will return false.
 
-=method isa_nil
+=head2 isa_nil
 
     my $thing = undef;
     $thing->isa_nil;
@@ -690,7 +690,7 @@ string, the method will return false.
 The nil method checks that the caller is an undefined value. If the caller is
 not an undefined value, the method will return false.
 
-=method isa_null
+=head2 isa_null
 
     my $thing = undef;
     $thing->isa_null;
@@ -698,7 +698,7 @@ not an undefined value, the method will return false.
 The null method checks that the caller is an undefined value. If the caller is
 not an undefined value, the method will return false.
 
-=method isa_undef
+=head2 isa_undef
 
     my $thing = undef;
     $thing->isa_undef;
@@ -706,7 +706,7 @@ not an undefined value, the method will return false.
 The undef method checks that the caller is an undefined value. If the caller is
 not an undefined value, the method will return false.
 
-=method isa_undefined
+=head2 isa_undefined
 
     my $thing = undef;
     $thing->isa_undefined;
@@ -714,7 +714,7 @@ not an undefined value, the method will return false.
 The undefined method checks that the caller is an undefined value. If the caller
 is not an undefined value, the method will return false.
 
-=method isa_val
+=head2 isa_val
 
     my $thing = undef;
     $thing->isa_val;
@@ -722,7 +722,7 @@ is not an undefined value, the method will return false.
 The val method checks that the caller is a value. If the caller is not a value,
 the method will return false.
 
-=method isa_value
+=head2 isa_value
 
     my $thing = undef;
     $thing->isa_value;
