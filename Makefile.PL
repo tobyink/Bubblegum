@@ -21,7 +21,6 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "Bubblegum",
   "PREREQ_PM" => {
-    "Class::Forward" => "0.100006",
     "Class::Load" => "0.21",
     "Devel::StackTrace" => "1.31",
     "Exporter::Tiny" => "0.030",
@@ -45,7 +44,6 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
-  "Class::Forward" => "0.100006",
   "Class::Load" => "0.21",
   "Devel::StackTrace" => "1.31",
   "Exporter::Tiny" => "0.030",

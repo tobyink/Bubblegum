@@ -9,8 +9,7 @@ use warnings;
 use Import::Into;
 use Moo::Role;
 
-use Bubblegum::Constraints ();
-use Class::Forward ();
+use Bubblegum::Namespace ();
 use feature ();
 use mro ();
 
@@ -31,18 +30,18 @@ sub prerequisites {
     usesub Bubblegum::Object unless $ignore;
 
     # imports
-    'strict'->import::into($target);
-    'warnings'->import::into($target);
-    'autodie'->import::into($target, ':all');
-    'feature'->import::into($target, ':5.10');
-    'utf8::all'->import::into($target);
-    'English'->import::into($target, '-no_match_vars');
+    'strict'    ->import::into($target);
+    'warnings'  ->import::into($target);
+    'utf8::all' ->import::into($target);
+    'autodie'   ->import::into($target, ':all');
+    'feature'   ->import::into($target, ':5.10');
+    'English'   ->import::into($target, '-no_match_vars');
 
-    # autobox
+    # autoboxing
     no warnings 'once';
     $target->autobox::import(
-        map { $_ => $$Bubblegum::Constraints::USES{$_} }
-            keys %$Bubblegum::Constraints::EXTS
+        map { $_ => $$Bubblegum::Namespace::ExtendedTypes{$_} }
+            keys %$Bubblegum::Namespace::DefaultTypes
     );
 }
 

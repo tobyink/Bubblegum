@@ -2,6 +2,7 @@ BEGIN {
     use FindBin;
     use lib $FindBin::Bin . '/myapp/lib';
 }
+$DB::deep = 100000;
 
 use MyApp::Core;
 use Test::More;

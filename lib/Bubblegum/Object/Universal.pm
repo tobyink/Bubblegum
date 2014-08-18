@@ -2,61 +2,50 @@
 package Bubblegum::Object::Universal;
 
 use 5.10.0;
-use Bubblegum::Exception;
-use Class::Forward;
 
-use Bubblegum::Class 'with';
-use Bubblegum::Constraints 'type_classname', 'type_object', 'type_string';
-use Class::Load 'load_class';
-use Scalar::Util 'blessed';
+use Bubblegum::Namespace;
+use Class::Load ();
 
 our @ISA = (); # non-object
 
 # VERSION
 
-sub instance {
+sub digest {
     my $self  = CORE::shift;
-    my $class = load_class $$Bubblegum::Constraints::USES{'INSTANCE'};
-    return type_object $class->new(data => $self);
+    return wrapper($self, 'Digest');
 }
 
-sub utils {
-    my $self = CORE::shift;
-    my $type = CORE::lc autobox::universal::type $self;
-    return wrapper($self, "${type}/utils");
+sub dumper {
+    my $self  = CORE::shift;
+    return wrapper($self, 'Dumper');
+}
+
+sub encoder {
+    my $self  = CORE::shift;
+    return wrapper($self, 'Encoder');
+}
+
+sub instance {
+    my $self  = CORE::shift;
+    my $class = $$Bubblegum::Namespace::ExtendedTypes{'INSTANCE'};
+    return Class::Load::load_class($class)->new(data => $self);
+}
+
+sub json {
+    my $self  = CORE::shift;
+    return wrapper($self, 'Json');
 }
 
 sub wrapper {
-    my $self    = CORE::shift;
-    my $name    = type_string CORE::shift;
-    my $space   = $$Bubblegum::Constraints::USES{'WRAPPER'};
-    my $wrapper = Class::Forward->new(namespace => $space)->forward($name);
-    my $plugin  = type_classname(load_class($wrapper));
-    return $plugin->new(data => $self) if $plugin;
+    my $self  = CORE::shift;
+    my $class = CORE::shift;
+    my $wrapper = $$Bubblegum::Namespace::ExtendedTypes{'WRAPPER'};
+    return Class::Load::load_class(join('::', $wrapper, $class))->new(data => $self);
 }
 
-sub AUTOLOAD {
-    my $self   = shift;
-    my $caller = caller;
-    my ($class, $method) = split /::(\w+)$/, our $AUTOLOAD;
-
-    if ($self->can($method)) {
-        unshift @_, $self;
-        goto $self->can($method);
-    }
-
-    # try plugin
-    if (my $plugin = eval {wrapper($self, $method)}) {
-        return $plugin->new(@_, data => $self) if $plugin;
-    }
-
-    Bubblegum::Exception->throw(
-        verbose => 1,
-        message => $method->format(
-            q(Can't locate object method "%s" via package "%s"),
-                ((blessed($self) ? ref $self : $caller) || 'main')
-        )
-    );
+sub yaml {
+    my $self  = CORE::shift;
+    return wrapper($self, 'Yaml');
 }
 
 1;

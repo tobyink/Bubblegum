@@ -16,25 +16,6 @@ use base 'Exporter::Tiny';
 
 # VERSION
 
-our $EXTS = {
-    ARRAY     => 'Bubblegum::Object::Array',
-    CODE      => 'Bubblegum::Object::Code',
-    FLOAT     => 'Bubblegum::Object::Float',
-    HASH      => 'Bubblegum::Object::Hash',
-    INTEGER   => 'Bubblegum::Object::Integer',
-    NUMBER    => 'Bubblegum::Object::Number',
-    SCALAR    => 'Bubblegum::Object::Scalar',
-    STRING    => 'Bubblegum::Object::String',
-    UNDEF     => 'Bubblegum::Object::Undef',
-    UNIVERSAL => 'Bubblegum::Object::Universal',
-};
-
-our $USES = {
-    %$EXTS,
-    INSTANCE => 'Bubblegum::Object::Instance',
-    WRAPPER  => 'Bubblegum::Wrapper',
-};
-
 my $TYPES = {
     ArrayRef   => [qw(aref arrayref)],
     Bool       => [qw(bool boolean)],
